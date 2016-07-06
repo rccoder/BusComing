@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/home" />
+    </group>
+    <item android:title="@string/citySelect">
+        <menu>
+            <item
+                android:id="@+id/nav_city"
+                android:icon="@drawable/ic_menu_city"
+                android:title="@string/citySelect" />
+        </menu>
+    </item>
+    <item android:title="@string/myService">
+        <menu>
+            <item
+                android:id="@+id/nav_often"
+                android:icon="@drawable/ic_menu_often"
+                android:title="@string/often" />
+            <item
+                android:id="@+id/nav_star"
+                android:icon="@drawable/ic_menu_star"
+                android:title="@string/star" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="关于" />
+        </menu>
+    </item>
+
+    <item android:title="@string/loginAndReg">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_menu_login"
+                android:title="@string/login" />
+        </menu>
+    </item>
+
+</menu>
