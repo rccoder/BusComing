@@ -20,7 +20,7 @@
         android:layout_height="150dp"
         android:layout_alignParentRight="true"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/ic_menu_unknow" />
+        app:srcCompat="@drawable/ic_menu_star" />
 
     <TextView
         android:id="@+id/textView"
