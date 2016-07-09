@@ -38,7 +38,18 @@
                 android:id="@+id/nav_login"
                 android:icon="@drawable/ic_menu_login"
                 android:title="@string/login" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_logout"
+                android:title="@string/logout" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_menu_exit"
+                android:title="@string/exit" />
+
         </menu>
+
     </item>
+
 
 </menu>
