@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity
         _data.add(row3);
 
         SimpleAdapter _simpleAdapter = new SimpleAdapter(this,
-                _data, R.layout.item,
+                _data, R.layout.activity_city_select_item,
                 new String[]{"name", "age", "img"},
                 new int[]{R.id.name, R.id.age, R.id.img}
         );
@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+        // Handle action bar activity_city_select_item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle navigation view activity_city_select_item clicks here.
 
         int id = item.getItemId();
 
