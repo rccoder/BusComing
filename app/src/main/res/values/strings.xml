@@ -4,8 +4,9 @@
     <string name="home">首页</string>
     <string name="often">常去</string>
     <string name="star">收藏</string>
+    <string name="about">关于</string>
     <string name="login">登录</string>
-    <string name="reg">注册</string>
+    <string name="action_reg_in">注册</string>
     <string name="logout">注销</string>
     <string name="exit">退出程序</string>
 
@@ -19,6 +20,7 @@
     <string name="action_settings">设置</string>
     <string name="unlogin">未登录</string>
     <string name="title_activity_login">登录</string>
+    <string name="no_username_and_reg">没有账号？注册一个</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">邮箱</string>
@@ -34,4 +36,5 @@
     </string>
     <string name="title_activity_city_select">城市选择</string>
     <string name="large_text">"请选择你的城市"</string>
+    <string name="title_activity_reg">注册</string>
 </resources>

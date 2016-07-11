@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         new Thread() {
             public void run() {
                 Log.d("TAGG", "Thread is RUn");
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity
             }
 
         }.start();
-
+*/
         /*
         ListView _listv = (ListView)findViewById(R.id.home_listview);
 
@@ -190,7 +190,12 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_city) {
             Intent nav_select_city_intent = new Intent(MainActivity.this, CitySelectActivity.class);
             startActivity(nav_select_city_intent);
-        } else if (id == R.id.nav_exit) {
+        } else if(id == R.id.nav_about) {
+            Intent nav_about_intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(nav_about_intent);
+        }else if(id == R.id.nav_logout) {
+
+        }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
             ActivityCollector.finishAll();
         }

@@ -9,11 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="hit.edu.cn.buscoming.Activity.LoginActivity"
-    android:weightSum="1">
+    tools:context="hit.edu.cn.buscoming.Activity.RegActivity">
 
     <!-- Login progress -->
-
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -62,9 +60,8 @@
 
                 <EditText
                     android:id="@+id/password"
-                    android:layout_width="323dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
@@ -81,25 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:background="@color/colorPrimary"
+                android:text="@string/action_reg_in"
                 android:textStyle="bold" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:text="@string/no_username_and_reg"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:id="@+id/reg"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true" />
-            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

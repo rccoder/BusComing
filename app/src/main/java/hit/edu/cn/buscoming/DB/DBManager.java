@@ -2,6 +2,7 @@ package hit.edu.cn.buscoming.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.List;
@@ -38,7 +39,26 @@ public class DBManager {
             db.endTransaction();    //结束事务
         }
     }
-
+    /*
+     * 查看当前城市
+     */
+    public String getCityState() {
+        Cursor cursor = db.rawQuery("SELECT city from state", null);
+        while(cursor.moveToNext()) {
+            return cursor.getString(cursor.getColumnIndex("city"));
+        }
+        return cursor.getString(cursor.getColumnIndex("city"));
+    }
+    /*
+     * 查看当前用户
+     */
+    public String getEmailState() {
+        Cursor cursor = db.rawQuery("SELECT email from state", null);
+        while(cursor.moveToNext()) {
+            return cursor.getString(cursor.getColumnIndex("email"));
+        }
+        return cursor.getString(cursor.getColumnIndex("city"));
+    }
     /**
      * 更新状态
      * @param state
