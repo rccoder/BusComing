@@ -28,10 +28,7 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".Activity.CitySelectActivity"
-            android:label="@string/title_activity_city_select"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.CitySelectActivity"></activity>
     </application>
 
 </manifest>

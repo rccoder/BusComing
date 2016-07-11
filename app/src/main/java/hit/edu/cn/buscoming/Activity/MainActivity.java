@@ -203,8 +203,8 @@ public class MainActivity extends BaseActivity
             Intent nav_login_intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(nav_login_intent);
         } else if (id == R.id.nav_city) {
-            Intent nav_city_intent = new Intent(MainActivity.this, CitySelectActivity.class);
-            startActivity(nav_city_intent);
+            Intent nav_select_city_intent = new Intent(MainActivity.this, CitySelectActivity.class);
+            startActivity(nav_select_city_intent);
         } else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
             ActivityCollector.finishAll();

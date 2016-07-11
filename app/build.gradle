@@ -24,11 +24,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile files('src/main/java/hit/edu/cn/buscoming/libs/volly-1.0.11.jar')
+    compile files('src/main/java/hit/edu/cn/buscoming/libs/gson-2.3.1.jar')
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
     compile 'com.gordonwong:material-sheet-fab:1.2.1'
     testCompile 'junit:junit:4.12'
-    compile files('src/main/java/hit/edu/cn/buscoming/libs/volly-1.0.11.jar')
-    compile files('src/main/java/hit/edu/cn/buscoming/libs/gson-2.3.1.jar')
 }
