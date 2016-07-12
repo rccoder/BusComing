@@ -3,28 +3,18 @@ package hit.edu.cn.buscoming.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-
+import android.view.View;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
-import hit.edu.cn.buscoming.City.Res;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
 import hit.edu.cn.buscoming.R;
 
@@ -194,7 +184,8 @@ public class MainActivity extends BaseActivity
             Intent nav_about_intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(nav_about_intent);
         }else if(id == R.id.nav_logout) {
-
+            Intent intent = new Intent(MainActivity.this, LineActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
             ActivityCollector.finishAll();
