@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.List;
 
@@ -25,18 +26,41 @@ public class DBManager {
     /**
      * 添加用户
      * @param user
+     * @return boolean
      */
-    public void addUser(User user) {
+    public boolean addUser(User user) {
         db.beginTransaction();  //开始事务
         try {
-            ContentValues cv = new ContentValues();
-            cv.put("email", user.email);
-            cv.put("password", user.password);
-            db.insert("person", null, cv);
-            //db.execSQL("INSERT INTO person VALUES(null, ?, ?)", new Object[]{user.email, user.password});
+            if(!exitUser(user)) {
+                ContentValues cv = new ContentValues();
+                cv.put("email", user.email);
+                cv.put("password", user.password);
+                db.insert("user", null, cv);
+            }
             db.setTransactionSuccessful();  //设置事务成功完成
+            return true;
         } finally {
             db.endTransaction();    //结束事务
+            return false;
+        }
+    }
+    /**
+     * 检查用户是否存在
+     * @param user
+     */
+    public boolean exitUser(User user) {
+        db.beginTransaction();
+        try {
+            Cursor cursor = db.query("user", null, "email=?", new String[]{user.email}, null, null, null);
+            while(cursor.moveToNext()) {
+                db.setTransactionSuccessful();
+                Log.d("exitUser", user.email);
+                return true;
+            }
+            db.setTransactionSuccessful();
+            return false;
+        } finally {
+            db.endTransaction();
         }
     }
     /*

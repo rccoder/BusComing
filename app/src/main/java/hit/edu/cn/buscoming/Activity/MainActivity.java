@@ -1,5 +1,6 @@
 package hit.edu.cn.buscoming.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,9 +12,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 public class MainActivity extends BaseActivity
@@ -24,6 +28,16 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DBManager db = new DBManager(MainActivity.this);
+        User _user = new User("e@gamil.com", "1234");
+        if(db.addUser(_user)) {
+            Toast.makeText(MainActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "已经存在用户", Toast.LENGTH_SHORT).show();
+        }
+        db.closeDB();
+        
 /*
         new Thread() {
             public void run() {

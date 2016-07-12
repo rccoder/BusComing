@@ -22,11 +22,11 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         // 创建用户表，存储登录用户
-        db.execSQL("CREATE TABLE IF NOT EXISTS user" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS user " +
                 "(_id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR, password VARCHAR)");
 
         // 创建状态表，存储当前用户和当前选中的城市，并且插入初始化信息
-        db.execSQL("CREATE TABLE IF NOT EXITS state" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS state " +
                 "(_id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR, city VARCHAR)");
         db.execSQL("INSERT INTO state VALUES(0, 'busComing@hit.edu.cn', '哈尔滨')");
     }
