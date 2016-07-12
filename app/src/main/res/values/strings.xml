@@ -42,4 +42,8 @@
     <string name="lineinput">请输入线路</string>
     <string name="lineserachbutton">查询</string>
 
+    <string name="linetext">路线查询</string>
+    <string name="stoptext">站点查询</string>
+    <string name="destext">起始地-目的地查询</string>
+
 </resources>

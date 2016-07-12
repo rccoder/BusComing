@@ -21,14 +21,46 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--app:srcCompat="@android:drawable/ic_input_add" />-->
+
+    <!--<include layout="@layout/content_main" />-->
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/function"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left">
 
-    <include layout="@layout/content_main" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/linesea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/linesea"
+            android:onClick="fabline"
+            app:fab_title="@string/linetext"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/stopsea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="fabstop"
+            app:fab_icon="@drawable/stoppic"
+            app:fab_title="@string/stoptext"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/dessea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="fabdes"
+            app:fab_icon="@drawable/despic"
+            app:fab_title="@string/destext"/>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </android.support.design.widget.CoordinatorLayout>
