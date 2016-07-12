@@ -40,4 +40,4 @@ captures/
 *.jks
 
 # JB
-.idea/
+.idea/**
