@@ -2,6 +2,7 @@ package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -162,6 +163,20 @@ public class MainActivity extends BaseActivity
     {
 
     }
+
+    //存储当前登录的用户的用户名和偏好城市
+    public void ssave(String user,String city){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",user);
+        editor.putString("city",city);
+        editor.commit();
+    }
+
+    //调用当前用户的用户名和偏好城市
+//    SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+//    String user = sharedPreferences.getString("user","");
+//    String city = sharedPreferences.getString("city","");
 
     @Override
     public void onBackPressed() {
