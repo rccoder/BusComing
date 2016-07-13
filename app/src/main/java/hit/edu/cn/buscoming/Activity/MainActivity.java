@@ -2,6 +2,7 @@ package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -139,7 +140,17 @@ public class MainActivity extends BaseActivity
 
     public void fabline (View view)
     {
+        String city="";
+        if (sgetcity()=="unknown")
+        {
+            city="";
+        }
+        else
+        {
+            city = sgetcity();
+        }
         Intent intent = new Intent();
+        intent.putExtra("extra",city);
         intent.setClass(MainActivity.this,LineActivity.class);
         startActivity(intent);
     }
@@ -153,6 +164,30 @@ public class MainActivity extends BaseActivity
     {
 
     }
+
+    //保存当前登录的用户的用户名和偏好城市
+    public void ssave(String user,String city){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",user);
+        editor.putString("city",city);
+        editor.commit();
+    }
+
+    //当前登录的用户名
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
+
+    //当前选择的城市
+    public String sgetcity(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String city = sharedPreferences.getString("city","unknown");
+        return city;
+    }
+
 
     @Override
     public void onBackPressed() {

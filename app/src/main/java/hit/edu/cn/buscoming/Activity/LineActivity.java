@@ -1,5 +1,6 @@
 package hit.edu.cn.buscoming.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
@@ -37,10 +38,13 @@ public class LineActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        Intent intent = getIntent();
+        String city = intent.getStringExtra("extra");
+
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
 
-
+        editTextcity.setText(city);
 
         Button button = (Button)findViewById(R.id.linesearch);
         button.setOnClickListener(new Button.OnClickListener(){
