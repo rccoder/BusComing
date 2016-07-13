@@ -3,23 +3,22 @@ package hit.edu.cn.buscoming.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -222,6 +221,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             DBManager db = new DBManager(LoginActivity.this);
             User _user = new User(email, password);
             if(db.loginUser(_user)) {
+                ssave(email,db.getCityState());
                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(loginIntent);
@@ -233,7 +233,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
         }
     }
-
+    public void ssave(String user,String city){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",user);
+        editor.putString("city",city);
+        editor.commit();
+    }
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");

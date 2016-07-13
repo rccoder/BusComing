@@ -8,7 +8,7 @@ public class User {
     public int _id;
     public String email;
     public String password;
-
+    public String city;
 
 
     public User() {

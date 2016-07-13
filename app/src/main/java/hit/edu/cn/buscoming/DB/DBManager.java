@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.util.List;
-
 /**
  * Created by rccoder on 2016/7/11.
  */
@@ -34,6 +32,7 @@ public class DBManager {
             Log.d("haha", "not exit user");
             ContentValues cv = new ContentValues();
             cv.put("email", user.email);
+            cv.put("city","北京");
             cv.put("password", user.password);
             db.insert("user", null, cv);
             return true;
@@ -76,7 +75,7 @@ public class DBManager {
      * 查看当前城市
      */
     public String getCityState() {
-        Cursor cursor = db.rawQuery("SELECT city from state", null);
+        Cursor cursor = db.rawQuery("SELECT city from user", null);
         while(cursor.moveToNext()) {
             return cursor.getString(cursor.getColumnIndex("city"));
         }

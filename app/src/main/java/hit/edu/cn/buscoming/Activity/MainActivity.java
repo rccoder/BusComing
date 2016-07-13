@@ -13,12 +13,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
-import hit.edu.cn.buscoming.DB.DBManager;
-import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 public class MainActivity extends BaseActivity
