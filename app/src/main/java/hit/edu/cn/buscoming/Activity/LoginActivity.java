@@ -116,6 +116,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             public void onClick(View v) {
                 Intent reg_intent = new Intent(LoginActivity.this, RegActivity.class);
                 startActivity(reg_intent);
+
             }
         });
     }
@@ -222,9 +223,11 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             User _user = new User(email, password);
             if(db.loginUser(_user)) {
                 ssave(email,db.getCityState());
+                Log.d("ssave",db.getCityState());
                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(loginIntent);
+                LoginActivity.this.finish();
             } else {
                 Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
             }

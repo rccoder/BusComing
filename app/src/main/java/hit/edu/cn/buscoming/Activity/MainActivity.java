@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 /*
         new Thread() {
@@ -138,7 +140,7 @@ public class MainActivity extends BaseActivity
     public void fabline (View view)
     {
         String city="";
-        if (sgetcity()=="unknown")
+        if ("unknown".equals(sgetcity()))
         {
             city="";
         }
@@ -237,7 +239,8 @@ public class MainActivity extends BaseActivity
             Intent nav_about_intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(nav_about_intent);
         }else if(id == R.id.nav_logout) {
-
+            ssave("unknown","unknown");
+            Toast.makeText(this, "注销成功", Toast.LENGTH_SHORT).show();
         }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
             ActivityCollector.finishAll();

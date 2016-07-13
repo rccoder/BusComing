@@ -15,6 +15,18 @@ public class User {
 
     }
 
+    public User(String email){
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public  User(String email, String password) {
         this.email = email;
         this.password = password;

@@ -91,6 +91,21 @@ public class DBManager {
         }
         return cursor.getString(cursor.getColumnIndex("city"));
     }
+    /*
+     * 存储当前用户选择的城市
+     */
+    public void updateCity(User user){
+        db.beginTransaction();
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put("city",user.city);
+            db.update("user",cv,"email=?",new String[]{user.city});
+        }finally {
+            db.endTransaction();
+        }
+    }
+
+
     /**
      * 更新状态
      * @param state
