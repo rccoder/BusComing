@@ -29,39 +29,48 @@ public class DBManager {
      * @return boolean
      */
     public boolean addUser(User user) {
-        db.beginTransaction();  //开始事务
-        try {
-            if(!exitUser(user)) {
-                ContentValues cv = new ContentValues();
-                cv.put("email", user.email);
-                cv.put("password", user.password);
-                db.insert("user", null, cv);
-            }
-            db.setTransactionSuccessful();  //设置事务成功完成
+
+        if(!exitUser(user)) {
+            Log.d("haha", "not exit user");
+            ContentValues cv = new ContentValues();
+            cv.put("email", user.email);
+            cv.put("password", user.password);
+            db.insert("user", null, cv);
             return true;
-        } finally {
-            db.endTransaction();    //结束事务
+        } else {
+            Log.d("haha", "exit user");
             return false;
         }
     }
+
     /**
      * 检查用户是否存在
      * @param user
+     * @return boolean
      */
     public boolean exitUser(User user) {
-        db.beginTransaction();
-        try {
-            Cursor cursor = db.query("user", null, "email=?", new String[]{user.email}, null, null, null);
-            while(cursor.moveToNext()) {
-                db.setTransactionSuccessful();
-                Log.d("exitUser", user.email);
-                return true;
-            }
-            db.setTransactionSuccessful();
-            return false;
-        } finally {
-            db.endTransaction();
+        Cursor cursor = db.query("user", null, "email=?", new String[]{user.email}, null, null, null);
+        while(cursor.moveToNext()) {
+            Log.d("exiteUser2", user.email);
+            return true;
         }
+        Log.d("notExitUser2", user.email);
+        return false;
+    }
+
+    /**
+     * 用户登录
+     * @param user
+     * @return boolean
+     */
+    public boolean loginUser(User user) {
+        Cursor cursor = db.query("user", null, "email=? AND password=?", new String[]{user.email, user.password}, null, null, null);
+        while(cursor.moveToNext()) {
+            Log.d("Login Success", user.email);
+            return true;
+        }
+        Log.d("Login Error", user.email);
+        return false;
     }
     /*
      * 查看当前城市

@@ -29,15 +29,6 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DBManager db = new DBManager(MainActivity.this);
-        User _user = new User("e@gamil.com", "1234");
-        if(db.addUser(_user)) {
-            Toast.makeText(MainActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(MainActivity.this, "已经存在用户", Toast.LENGTH_SHORT).show();
-        }
-        db.closeDB();
-        
 /*
         new Thread() {
             public void run() {

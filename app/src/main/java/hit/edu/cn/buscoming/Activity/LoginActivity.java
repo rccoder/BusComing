@@ -32,11 +32,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -178,10 +181,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * 如果表单有错误（邮箱格式错误，有区域没有填写），反馈错误
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -211,64 +210,27 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             cancel = true;
         }
 
-        // 错误聚焦到相应区域
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // 尝试登录，展现登录进度条
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-    }
-    private void attemptLoginTmp() {
-        if (mAuthTask != null) {
-            return;
-        }
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+            Log.d("Login Now", "Now will send login message");
+            DBManager db = new DBManager(LoginActivity.this);
+            User _user = new User(email, password);
+            if(db.loginUser(_user)) {
+                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(loginIntent);
+            } else {
+                Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+            }
+            db.closeDB();
 
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        // 错误聚焦到相应区域
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // 尝试登录，展现登录进度条
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
         }
     }
 
