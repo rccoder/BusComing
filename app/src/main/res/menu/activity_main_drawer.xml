@@ -15,7 +15,7 @@
                 android:title="@string/citySelect" />
         </menu>
     </item>
-    <item android:title="@string/myService">
+    <item android:title="@string/myService" android:id="@+id/test">
         <menu>
             <item
                 android:id="@+id/nav_often"

@@ -93,13 +93,15 @@ public class DBManager {
     }
     /*
      * 存储当前用户选择的城市
+     * @param user[email, city]
+     * @return void
      */
     public void updateCity(User user){
         db.beginTransaction();
         try {
             ContentValues cv = new ContentValues();
             cv.put("city",user.city);
-            db.update("user",cv,"email=?",new String[]{user.city});
+            db.update("user",cv,"email=?",new String[]{user.email});
         }finally {
             db.endTransaction();
         }
