@@ -99,7 +99,7 @@ public class DBManager {
         try {
             ContentValues cv = new ContentValues();
             cv.put("city",user.city);
-            db.update("user",cv,"email=?",new String[]{user.city});
+            db.update("user",cv,"email=?",new String[]{user.email});
         }finally {
             db.endTransaction();
         }
