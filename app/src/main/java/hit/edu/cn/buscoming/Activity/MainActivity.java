@@ -149,8 +149,15 @@ public class MainActivity extends BaseActivity
 
     public void fabline (View view)
     {
-        String city = "";
-        city = sget("");
+        String city="";
+        if (sgetcity()=="unknown")
+        {
+            city="";
+        }
+        else
+        {
+            city = sgetcity();
+        }
         Intent intent = new Intent();
         intent.putExtra("extra",city);
         intent.setClass(MainActivity.this,LineActivity.class);
@@ -167,18 +174,26 @@ public class MainActivity extends BaseActivity
 
     }
 
-    //存储当前登录的用户的用户名和偏好城市
+    //保存当前登录的用户的用户名和偏好城市
     public void ssave(String user,String city){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(user,city);
+        editor.putString("user",user);
+        editor.putString("city",city);
         editor.commit();
     }
 
-    //传入用户名，调取该用户的偏好城市
-    public String sget(String name){
+    //当前登录的用户名
+    public String sgetname(){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
-        String city = sharedPreferences.getString(name,"");
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
+
+    //当前选择的城市
+    public String sgetcity(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String city = sharedPreferences.getString("city","unknown");
         return city;
     }
 
