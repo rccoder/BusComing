@@ -149,7 +149,10 @@ public class MainActivity extends BaseActivity
 
     public void fabline (View view)
     {
+        String city = "";
+        city = sget("");
         Intent intent = new Intent();
+        intent.putExtra("extra",city);
         intent.setClass(MainActivity.this,LineActivity.class);
         startActivity(intent);
     }
@@ -168,15 +171,17 @@ public class MainActivity extends BaseActivity
     public void ssave(String user,String city){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user",user);
-        editor.putString("city",city);
+        editor.putString(user,city);
         editor.commit();
     }
 
-    //调用当前用户的用户名和偏好城市
-//    SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
-//    String user = sharedPreferences.getString("user","");
-//    String city = sharedPreferences.getString("city","");
+    //传入用户名，调取该用户的偏好城市
+    public String sget(String name){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String city = sharedPreferences.getString(name,"");
+        return city;
+    }
+
 
     @Override
     public void onBackPressed() {
