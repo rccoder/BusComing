@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
@@ -167,6 +166,24 @@ public class MainActivity extends BaseActivity
         }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
             ActivityCollector.finishAll();
+        }else if(id == R.id.nav_offten) {
+            if (sgetname().equals("unknown"))
+            {
+                Toast.makeText(this, "未登录，请先登录再查看常去", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+
+            }
+        }else if (id == R.id.nav_star){
+            if (sgetname().equals("unknown"))
+            {
+                Toast.makeText(this, "未登录，请先登录再查看收藏", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+
+            }
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
