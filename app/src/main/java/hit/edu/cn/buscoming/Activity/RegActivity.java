@@ -206,8 +206,8 @@ public class RegActivity extends BaseActivity implements LoaderCallbacks<Cursor>
             DBManager db = new DBManager(RegActivity.this);
             User _user = new User(email, password);
             if(db.addUser(_user)) {
-                Toast.makeText(RegActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                Intent regIntent = new Intent(RegActivity.this, MainActivity.class);
+                Toast.makeText(RegActivity.this, "注册成功, 请进行登录", Toast.LENGTH_SHORT).show();
+                Intent regIntent = new Intent(RegActivity.this, LoginActivity.class);
                 startActivity(regIntent);
                 RegActivity.this.finish();
             } else {
