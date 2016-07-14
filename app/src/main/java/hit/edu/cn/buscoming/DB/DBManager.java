@@ -162,7 +162,7 @@ public class DBManager {
      *  @param int flag
      *  @param int num
      *
-     *  @return Lise<Recent> recentList
+     *  @return List<Recent> recentList
      */
     public List<Recent> getRecent(String email, int flag, int num) {
         Cursor cursor = db.query("recent", null, "email=? AND flag=?", new String[]{email, String.valueOf(flag)}, null, null, "_id desc", String.valueOf(num));
@@ -212,6 +212,35 @@ public class DBManager {
         }
         return false;
     }
+
+
+    /*
+     *  查看最近收藏
+     *  @param String email
+     *  @param int flag
+     *  @param int num
+     *
+     *  @return List<Star> starList
+     */
+    public List<Star> getStar(String email, int flag, int num) {
+        Cursor cursor = db.query("star", null, "email=? AND flag=?", new String[]{email, String.valueOf(flag)}, null, null, "_id desc", String.valueOf(num));
+        List starList = new ArrayList();
+        while(cursor.moveToNext()) {
+            Star star = new Star();
+            star.setFlag(cursor.getInt(cursor.getColumnIndex("flag")));
+            star.setLine_city(cursor.getString(cursor.getColumnIndex("line_city")));
+            star.setLine_line(cursor.getString(cursor.getColumnIndex("line_line")));
+            star.setStop_city(cursor.getString(cursor.getColumnIndex("stop_city")));
+            star.setStop_stop(cursor.getString(cursor.getColumnIndex("stop_stop")));
+            star.setDes_city(cursor.getString(cursor.getColumnIndex("des_city")));
+            star.setDes_src(cursor.getString(cursor.getColumnIndex("des_src")));
+            star.setDes_des(cursor.getString(cursor.getColumnIndex("des_des")));
+
+            starList.add(star);
+        }
+        return starList;
+    }
+
     /**
      * close database
      */
