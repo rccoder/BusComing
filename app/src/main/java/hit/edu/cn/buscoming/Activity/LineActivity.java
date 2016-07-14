@@ -76,13 +76,20 @@ public class LineActivity extends BaseActivity {
                                         ListView _listv = (ListView) findViewById(R.id.linesearchresult);
                                         List<String> _data = new ArrayList<String>();
 
-                                        _data.add(res.getResult().get(0).get_id());
-                                        _data.add(res.getResult().get(0).getInfo()                                          );
+                                        if (res.getError_code()==0)
+                                        {
+                                            _data.add(res.getResult().get(0).get_id());
+                                            _data.add(res.getResult().get(0).getInfo()                                          );
 
-                                        res.getResult().get(0).getStats();
+                                            res.getResult().get(0).getStats();
 
-                                        for (stats sta : res.getResult().get(0).getStats()) {
-                                            _data.add(sta.get_id());
+                                            for (stats sta : res.getResult().get(0).getStats()) {
+                                                _data.add(sta.get_id());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _data.add("输入错误");
                                         }
 
                                         ArrayAdapter<String> _adapter = new ArrayAdapter<String>(LineActivity.this,android.R.layout.simple_list_item_1,_data);
