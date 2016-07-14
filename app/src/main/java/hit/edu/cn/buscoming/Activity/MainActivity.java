@@ -151,21 +151,34 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            // 登录
         } else if (id == R.id.nav_login) {
-            Intent nav_login_intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(nav_login_intent);
+            if(sgetname().equals("unknown")) {
+                Intent nav_login_intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(nav_login_intent);
+            } else {
+                Toast.makeText(MainActivity.this, "你已登录成功，无需重复登录", Toast.LENGTH_SHORT).show();
+            }
+            // 选择城市
         } else if (id == R.id.nav_city) {
             Intent nav_select_city_intent = new Intent(MainActivity.this, CitySelectActivity.class);
             startActivity(nav_select_city_intent);
+            // 关于
         } else if(id == R.id.nav_about) {
             Intent nav_about_intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(nav_about_intent);
+            // 注销
         }else if(id == R.id.nav_logout) {
-            ssave("unknown","unknown");
-            Toast.makeText(this, "注销成功", Toast.LENGTH_SHORT).show();
+            if(sgetname().equals("unknown")) {
+                Toast.makeText(MainActivity.this, "你还没有登录，无法注销", Toast.LENGTH_SHORT).show();
+            } else {
+                ssave("unknown","unknown");
+                Toast.makeText(this, "注销成功", Toast.LENGTH_SHORT).show();
+            }
+            // 退出
         }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
+            Toast.makeText(MainActivity.this, "退出成功,别忘了日后打开吆~", Toast.LENGTH_SHORT).show();
             ActivityCollector.finishAll();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

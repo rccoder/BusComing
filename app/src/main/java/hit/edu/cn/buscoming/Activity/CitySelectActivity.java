@@ -1,6 +1,7 @@
 package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -103,16 +104,19 @@ public class CitySelectActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //这里要利用adapter.getItem(position)来获取当前position所对应的对象
-                //存到数据库未完成
                 DBManager dbManager = new DBManager(CitySelectActivity.this);
 
                 User user = new User(sgetname());
                 user.setCity(((SortModel)adapter.getItem(position)).getCityName());
                 dbManager.updateCity(user);
+
                 Log.d("userc",user.city);
 
                 ssave(sgetname(),((SortModel)adapter.getItem(position)).getCityName());
-                Toast.makeText(getApplication(), ((SortModel)adapter.getItem(position)).getCityName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "你已经选择 " + ((SortModel)adapter.getItem(position)).getCityName() + " 做为默认城市", Toast.LENGTH_SHORT).show();
+
+                Intent main_intent = new Intent(CitySelectActivity.this, MainActivity.class);
+                startActivity(main_intent);
             }
         });
 

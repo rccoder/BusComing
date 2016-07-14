@@ -110,15 +110,27 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        // 注册事件绑定
         TextView regTextView = (TextView) findViewById(R.id.reg);
         regTextView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent reg_intent = new Intent(LoginActivity.this, RegActivity.class);
-                startActivity(reg_intent);
+
+                if(sgetname().equals("unknown")) {
+                    Intent reg_intent = new Intent(LoginActivity.this, RegActivity.class);
+                    startActivity(reg_intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "你已登录成功，不能注册", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
+    }
+
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
     }
 
     @Override
