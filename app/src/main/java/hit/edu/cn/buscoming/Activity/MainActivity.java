@@ -186,7 +186,8 @@ public class MainActivity extends BaseActivity
             }
             else
             {
-
+                Intent nav_offten_intent = new Intent(MainActivity.this, RecentActivity.class);
+                startActivity(nav_offten_intent);
             }
         }else if (id == R.id.nav_star){
             if (sgetname().equals("unknown"))
@@ -195,9 +196,12 @@ public class MainActivity extends BaseActivity
             }
             else
             {
+                Intent nav_star_intent = new Intent(MainActivity.this, StarActivity.class);
+                startActivity(nav_star_intent);
 
             }
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

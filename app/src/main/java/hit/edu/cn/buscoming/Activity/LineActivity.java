@@ -1,6 +1,8 @@
 package hit.edu.cn.buscoming.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
@@ -27,10 +29,18 @@ import java.util.Map;
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.BusStatsObj.Res;
 import hit.edu.cn.buscoming.BusStatsObj.stats;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.Recent;
 import hit.edu.cn.buscoming.R;
 
 public class LineActivity extends BaseActivity {
     public List<Map<String, Object>> mData;
+
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,11 @@ public class LineActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
+
+
+
+
+
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
@@ -54,8 +69,8 @@ public class LineActivity extends BaseActivity {
                 new Thread() {
                     public void run() {
 
-                        String city = editTextcity.getText().toString();
-                        String line = editTextline.getText().toString();
+                        final String city = editTextcity.getText().toString();
+                        final String line = editTextline.getText().toString();
                         Log.e("TAGG", "Thread is RUn");
                         RequestQueue requestQueue = Volley.newRequestQueue(LineActivity.this);
                         //StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=dfe24b2fc63686cf2a0b87cc47d050dd",
@@ -72,6 +87,17 @@ public class LineActivity extends BaseActivity {
                                         Gson gson = new Gson();
                                         Res res;
                                         res = gson.fromJson(response,Res.class);
+
+                                        DBManager db = new DBManager(LineActivity.this);
+
+
+                                        Recent r = new Recent(sgetname(),1);
+                                        r.setLine_city(city);
+                                        r.setLine_line(line);
+                                        db.saveRecent(r);
+
+
+
 
                                         ListView _listv = (ListView) findViewById(R.id.linesearchresult);
                                         List<String> _data = new ArrayList<String>();
