@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rccoder on 2016/7/11.
  */
@@ -122,6 +125,92 @@ public class DBManager {
         } finally {
             db.endTransaction();
         }
+    }
+    /*
+     * 保存最近查询记录
+     * @param Recent recent(must have email and flag and one of threes)
+     * @return boolean
+     */
+    public boolean saveRecent(Recent recent) {
+        ContentValues cv = new ContentValues();
+        cv.put("email", recent.email);
+        cv.put("flag", recent.flag);
+
+        if(recent.flag == 1) {
+            cv.put("line_city", recent.line_city);
+            cv.put("line_line", recent.line_line);
+            db.insert("recent", null, cv);
+            return true;
+        } else if (recent.flag == 2) {
+            cv.put("stop_city", recent.stop_city);
+            cv.put("stop_stop", recent.stop_stop);
+            db.insert("recent", null, cv);
+            return true;
+        } else if (recent.flag == 3) {
+            cv.put("des_city", recent.des_city);
+            cv.put("des_src", recent.des_src);
+            cv.put("des_des", recent.des_des);
+            db.insert("recent", null, cv);
+            return true;
+        }
+        return false;
+    }
+
+    /*
+     *  查看最近记录
+     *  @param String email
+     *  @param int flag
+     *  @param int num
+     *
+     *  @return Lise<Recent> recentList
+     */
+    public List<Recent> getRecent(String email, int flag, int num) {
+        Cursor cursor = db.query("recent", null, "email=? AND flag=?", new String[]{email, String.valueOf(flag)}, null, null, "_id desc", String.valueOf(num));
+        List recentList = new ArrayList();
+        while(cursor.moveToNext()) {
+            Recent recent = new Recent();
+            recent.setFlag(cursor.getInt(cursor.getColumnIndex("flag")));
+            recent.setLine_city(cursor.getString(cursor.getColumnIndex("line_city")));
+            recent.setLine_line(cursor.getString(cursor.getColumnIndex("line_line")));
+            recent.setStop_city(cursor.getString(cursor.getColumnIndex("stop_city")));
+            recent.setStop_stop(cursor.getString(cursor.getColumnIndex("stop_stop")));
+            recent.setDes_city(cursor.getString(cursor.getColumnIndex("des_city")));
+            recent.setDes_src(cursor.getString(cursor.getColumnIndex("des_src")));
+            recent.setDes_des(cursor.getString(cursor.getColumnIndex("des_des")));
+
+            recentList.add(recent);
+        }
+        return recentList;
+    }
+
+    /*
+     * 保存最近收藏记录
+     * @param Star star(must have email and flag and one of threes)
+     * @return boolean
+     */
+    public boolean saveStar(Star star) {
+        ContentValues cv = new ContentValues();
+        cv.put("email", star.email);
+        cv.put("flag", star.flag);
+
+        if(star.flag == 1) {
+            cv.put("line_city", star.line_city);
+            cv.put("line_line", star.line_line);
+            db.insert("star", null, cv);
+            return true;
+        } else if (star.flag == 2) {
+            cv.put("stop_city", star.stop_city);
+            cv.put("stop_stop", star.stop_stop);
+            db.insert("star", null, cv);
+            return true;
+        } else if (star.flag == 3) {
+            cv.put("des_city", star.des_city);
+            cv.put("des_src", star.des_src);
+            cv.put("des_des", star.des_des);
+            db.insert("star", null, cv);
+            return true;
+        }
+        return false;
     }
     /**
      * close database

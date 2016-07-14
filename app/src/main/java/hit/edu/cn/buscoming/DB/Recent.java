@@ -17,6 +17,15 @@ public class Recent {
     public String des_src;
     public String des_des;
 
+    public Recent() {
+
+    }
+
+    public Recent(String email, int flag) {
+        this.email = email;
+        this.flag = flag;
+    }
+
     public String getEmail() {
         return email;
     }
