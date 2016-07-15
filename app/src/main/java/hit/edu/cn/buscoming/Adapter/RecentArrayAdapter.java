@@ -1,6 +1,7 @@
-package hit.edu.cn.buscoming.Activity;
+package hit.edu.cn.buscoming.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +11,18 @@ import android.widget.TextView;
 import java.util.List;
 
 import hit.edu.cn.buscoming.DB.Recent;
-import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 
 /**
  * Created by rccoder on 2016/7/15.
  */
 
-public class StarArrayAdapter extends ArrayAdapter<Star> {
+public class RecentArrayAdapter extends ArrayAdapter<Recent> {
     private int[] colors = new int[] { 0xff3cb371, 0xffa0a0a0 };
     private Context mContext;
     private int resource;
 
-    public StarArrayAdapter(Context context, int resource, List<Star> data) {
+    public RecentArrayAdapter(Context context, int resource, List<Recent> data) {
         super(context, resource, data);
         this.mContext = context;
         this.resource = resource;
@@ -44,7 +44,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             // 将holder绑定到convertView
             convertView.setTag(holder);
         } else {
-            holder = (StarArrayAdapter.ViewHolder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         holder.title.setText(getItem(position).getEmail());

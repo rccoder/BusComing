@@ -1,16 +1,15 @@
 package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 import java.util.List;
 
+import hit.edu.cn.buscoming.Adapter.RecentArrayAdapter;
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.DB.DBManager;
 import hit.edu.cn.buscoming.DB.Recent;
@@ -44,12 +43,12 @@ public class RecentActivity extends BaseActivity {
         List<Recent> r = db.getRecent(sgetname(),1,2);
         ListView _listv = (ListView) findViewById(R.id.recent1);
         r.get(0).setLine_city("search"+r.get(0).getLine_city());
-        MyArrayAdapter _adapter = new MyArrayAdapter(RecentActivity.this,R.layout.list_item,r);
+        RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
         _listv.setAdapter(_adapter);
 
         List<Recent> r2 = db.getRecent(sgetname(),1,2);
         ListView _listv2 = (ListView) findViewById(R.id.recent2);
-        MyArrayAdapter _adapter2 = new MyArrayAdapter(RecentActivity.this,R.layout.list_item,r2);
+        RecentArrayAdapter _adapter2 = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r2);
         _listv2.setAdapter(_adapter2);
 
     }

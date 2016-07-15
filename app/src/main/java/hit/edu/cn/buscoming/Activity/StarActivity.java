@@ -3,15 +3,14 @@ package hit.edu.cn.buscoming.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.List;
 
+import hit.edu.cn.buscoming.Adapter.StarArrayAdapter;
 import hit.edu.cn.buscoming.DB.DBManager;
-import hit.edu.cn.buscoming.DB.Recent;
 import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 import hit.edu.cn.buscoming.Base.BaseActivity;
