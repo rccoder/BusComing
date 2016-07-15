@@ -40,6 +40,7 @@
     <!-- Strings line -->
     <string name="cityinput">请输入城市</string>
     <string name="lineinput">请输入线路</string>
+    <string name="stationinput">请输入站点</string>
     <string name="lineserachbutton">查询</string>
 
     <string name="linetext">路线查询</string>
