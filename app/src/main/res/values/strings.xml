@@ -46,4 +46,9 @@
     <string name="stoptext">站点查询</string>
     <string name="destext">起始地-目的地查询</string>
 
+    <!-- String Transfer -->
+    <string name="transferStartstat">请输入起点站台</string>
+    <string name="transferEndstat">请输入终点站台</string>
+    <string name="transferLike">换乘偏好</string>
+
 </resources>

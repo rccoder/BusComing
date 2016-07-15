@@ -161,7 +161,9 @@ public class MainActivity extends BaseActivity
 
     public void fabdes (View view)
     {
-
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this,TransferActivity.class);
+        startActivity(intent);
     }
 
     //存储当前登录的用户的用户名和偏好城市

@@ -39,7 +39,8 @@
             android:label="@string/about">
             >
         </activity>
-        <activity android:name=".Activity.LineActivity"></activity>
+        <activity android:name=".Activity.LineActivity" />
+        <activity android:name=".Activity.TransferActivity"></activity>
     </application>
 
 </manifest>

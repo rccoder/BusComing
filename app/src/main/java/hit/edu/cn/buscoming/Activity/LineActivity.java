@@ -59,7 +59,7 @@ public class LineActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,
+                                Request.Method.GET,"http://api.juheapi.com/bus/line?key=2524dba6367ba5aa7d7bed6b3caa424a&city=苏州&q=110",
 
                                 new Response.Listener<String>() {
                                     @Override
