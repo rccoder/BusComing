@@ -71,7 +71,7 @@ public class StationActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q=宣化街",
+                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+station,
 
                                 new Response.Listener<String>() {
                                     @Override
