@@ -226,8 +226,8 @@ public class DBManager {
         Cursor cursor = db.query("star", null, "email=? AND flag=?", new String[]{email, String.valueOf(flag)}, null, null, "_id desc", String.valueOf(num));
         List starList = new ArrayList();
         while(cursor.moveToNext()) {
-            Star star = new Star();
-            star.setFlag(cursor.getInt(cursor.getColumnIndex("flag")));
+            Star star = new Star(email,flag);
+            //star.setFlag(cursor.getInt(cursor.getColumnIndex("flag")));
             star.setLine_city(cursor.getString(cursor.getColumnIndex("line_city")));
             star.setLine_line(cursor.getString(cursor.getColumnIndex("line_line")));
             star.setStop_city(cursor.getString(cursor.getColumnIndex("stop_city")));

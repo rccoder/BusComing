@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_recent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="hit.edu.cn.buscoming.Activity.RecentActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <TextView
+        android:text="TextView1"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_below="@id/textView1"
+        android:layout_height="wrap_content"
+        android:id="@+id/recent1" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recent1" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:text="TextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recent1"
+        android:id="@+id/textView2" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView2"
+        android:layout_height="wrap_content"
+        android:id="@+id/recent2" />
+
+    <TextView
+        android:text="TextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recent2"
+        android:id="@+id/textView3" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView3"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

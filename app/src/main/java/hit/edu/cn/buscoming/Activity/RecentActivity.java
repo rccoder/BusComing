@@ -1,14 +1,14 @@
 package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
@@ -22,19 +22,35 @@ public class RecentActivity extends BaseActivity {
         String name = sharedPreferences.getString("user","unknown");
         return name;
     }
+    // actionBar back
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         DBManager db = new DBManager(RecentActivity.this);
         List<Recent> r = db.getRecent(sgetname(),1,2);
         ListView _listv = (ListView) findViewById(R.id.recent1);
-        ArrayAdapter<Recent> _adapter = new ArrayAdapter<Recent>(RecentActivity.this,android.R.layout.simple_list_item_1,r);
+        r.get(0).setLine_city("search"+r.get(0).getLine_city());
+        MyArrayAdapter _adapter = new MyArrayAdapter(RecentActivity.this,R.layout.list_item,r);
         _listv.setAdapter(_adapter);
 
-
+        List<Recent> r2 = db.getRecent(sgetname(),1,2);
+        ListView _listv2 = (ListView) findViewById(R.id.recent2);
+        MyArrayAdapter _adapter2 = new MyArrayAdapter(RecentActivity.this,R.layout.list_item,r2);
+        _listv2.setAdapter(_adapter2);
 
     }
 }

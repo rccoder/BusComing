@@ -31,16 +31,41 @@ import hit.edu.cn.buscoming.BusStatsObj.Res;
 import hit.edu.cn.buscoming.BusStatsObj.stats;
 import hit.edu.cn.buscoming.DB.DBManager;
 import hit.edu.cn.buscoming.DB.Recent;
+import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 
 public class LineActivity extends BaseActivity {
+
     public List<Map<String, Object>> mData;
+
 
     public String sgetname(){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("user","unknown");
         return name;
     }
+
+
+    // fab xml 调用
+    public void star_content (View view)
+    {
+        DBManager db = new DBManager(LineActivity.this);
+
+        // rencent 数据库里最近插入的一条记录
+        List<Recent> r = db.getRecent(sgetname(),1,1);
+        Star star = new Star(sgetname(), 1);
+
+        star.setLine_city(r.get(0).getLine_city());
+        star.setLine_line(r.get(0).getLine_line());
+
+        if(db.saveStar(star)) {
+            Toast.makeText(LineActivity.this, "收藏成功:"+r.get(0).getLine_city()+r.get(0).getLine_line(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LineActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +75,6 @@ public class LineActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
-
-
-
-
-
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
@@ -152,4 +172,6 @@ public class LineActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
