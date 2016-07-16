@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(resource, null);
 
-            holder.title = (TextView) convertView.findViewById(R.id.ItemTitle);
+            holder.title = (ImageView) convertView.findViewById(R.id.ItemTitle);
             holder.text = (TextView) convertView.findViewById(R.id.ItemText);
             holder.text2=(TextView)convertView.findViewById(R.id.ItemText2);
 
@@ -46,7 +47,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             holder = (StarArrayAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.title.setText(getItem(position).getEmail());
+        holder.title.setImageResource(R.drawable.ic_menu_home);
         holder.text.setText(getItem(position).getLine_city());
         holder.text2.setText(getItem(position).getLine_line());
 
@@ -61,7 +62,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
      */
     final class ViewHolder {
         //ImageView image;
-        TextView title;
+        ImageView title;
         TextView text;
         TextView text2;
     }

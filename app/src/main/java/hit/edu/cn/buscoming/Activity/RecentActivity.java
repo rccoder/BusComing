@@ -42,7 +42,8 @@ public class RecentActivity extends BaseActivity {
         DBManager db = new DBManager(RecentActivity.this);
         List<Recent> r = db.getRecent(sgetname(),1,2);
         ListView _listv = (ListView) findViewById(R.id.recent1);
-        r.get(0).setLine_city("search"+r.get(0).getLine_city());
+        r.get(0).setLine_city("城市:"+r.get(0).getLine_city());
+        r.get(1).setLine_city("城市:"+r.get(1).getLine_city());
         RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
         _listv.setAdapter(_adapter);
 

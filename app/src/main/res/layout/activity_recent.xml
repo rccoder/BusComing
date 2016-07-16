@@ -5,10 +5,13 @@
 
 
     <TextView
-        android:text="TextView1"
-        android:textSize="30dp"
+        android:text="最近查询路线"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#303F9F"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+
         android:id="@+id/textView1" />
 
     <ListView
@@ -18,10 +21,15 @@
         android:id="@+id/recent1" />
 
     <TextView
-        android:text="TextView2"
+        android:text="最近查询站点"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recent1"
+
+        android:textColor="#ffc0c4db"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+
         android:id="@+id/textView2" />
 
     <ListView
