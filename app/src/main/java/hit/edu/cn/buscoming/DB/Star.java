@@ -17,6 +17,11 @@ public class Star {
     public String des_src;
     public String des_des;
 
+    public void Star(String email, int flag) {
+        this.email = email;
+        this.flag = flag;
+    }
+
     public String getEmail() {
         return email;
     }

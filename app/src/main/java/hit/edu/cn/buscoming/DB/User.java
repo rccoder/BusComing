@@ -8,11 +8,23 @@ public class User {
     public int _id;
     public String email;
     public String password;
-
+    public String city;
 
 
     public User() {
 
+    }
+
+    public User(String email){
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public  User(String email, String password) {

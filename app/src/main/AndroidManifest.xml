@@ -37,10 +37,12 @@
         <activity
             android:name=".Activity.AboutActivity"
             android:label="@string/about">
-            >
         </activity>
         <activity android:name=".Activity.LineActivity" />
         <activity android:name=".Activity.TransferActivity"></activity>
+        <activity android:name=".Activity.StationActivity" />
+        <activity android:name=".Activity.RecentActivity" />
+        <activity android:name=".Activity.StarActivity"></activity>
     </application>
 
 </manifest>

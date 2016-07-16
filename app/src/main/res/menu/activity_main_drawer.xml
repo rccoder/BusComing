@@ -15,11 +15,11 @@
                 android:title="@string/citySelect" />
         </menu>
     </item>
-    <item android:title="@string/myService">
+    <item android:title="@string/myService" android:id="@+id/test">
         <menu>
             <item
-                android:id="@+id/nav_often"
-                android:icon="@drawable/ic_menu_often"
+                android:id="@+id/nav_offten"
+                android:icon="@drawable/ic_menu_offten"
                 android:title="@string/often" />
             <item
                 android:id="@+id/nav_star"

@@ -3,23 +3,22 @@ package hit.edu.cn.buscoming.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -32,11 +31,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -108,14 +110,27 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        // 注册事件绑定
         TextView regTextView = (TextView) findViewById(R.id.reg);
         regTextView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent reg_intent = new Intent(LoginActivity.this, RegActivity.class);
-                startActivity(reg_intent);
+
+                if(sgetname().equals("unknown")) {
+                    Intent reg_intent = new Intent(LoginActivity.this, RegActivity.class);
+                    startActivity(reg_intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "你已登录成功，不能注册", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
     }
 
     @Override
@@ -178,10 +193,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * 如果表单有错误（邮箱格式错误，有区域没有填写），反馈错误
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -211,67 +222,39 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             cancel = true;
         }
 
-        // 错误聚焦到相应区域
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // 尝试登录，展现登录进度条
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+
+            Log.d("Login Now", "Now will send login message");
+            DBManager db = new DBManager(LoginActivity.this);
+            User _user = new User(email, password);
+            if(db.loginUser(_user)) {
+                ssave(email,db.getCityState());
+                Log.d("ssave",db.getCityState());
+                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(loginIntent);
+                LoginActivity.this.finish();
+            } else {
+                Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+            }
+            db.closeDB();
+
+
         }
     }
-    private void attemptLoginTmp() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        // 错误聚焦到相应区域
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // 尝试登录，展现登录进度条
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-        }
+    public void ssave(String user,String city){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",user);
+        editor.putString("city",city);
+        editor.commit();
     }
-
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");

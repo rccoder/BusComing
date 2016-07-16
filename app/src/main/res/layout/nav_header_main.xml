@@ -35,7 +35,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/unlogin"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/textView2"
+        android:id="@+id/textEmail"
         android:layout_marginBottom="22dp"
         android:layout_above="@+id/textView"
         android:layout_alignParentStart="true" />

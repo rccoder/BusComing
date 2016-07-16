@@ -100,6 +100,7 @@ public class TransferActivity extends BaseActivity {
                         //通过站台查询获取经纬度
                         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
                         final String city = sharedPreferences.getString("city","");
+//                        final String city = "苏州";
 //                        System.out.println(city);
                         final String[] start_lat = new String[1];
                         final String[] start_lng = new String[1];

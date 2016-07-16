@@ -1,11 +1,14 @@
 package hit.edu.cn.buscoming.Activity;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +27,8 @@ import hit.edu.cn.buscoming.City.PinyinComparator;
 import hit.edu.cn.buscoming.City.SideBar;
 import hit.edu.cn.buscoming.City.SortAdapter;
 import hit.edu.cn.buscoming.City.SortModel;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 public class CitySelectActivity extends BaseActivity {
@@ -99,7 +104,19 @@ public class CitySelectActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //这里要利用adapter.getItem(position)来获取当前position所对应的对象
-                Toast.makeText(getApplication(), ((SortModel)adapter.getItem(position)).getCityName(), Toast.LENGTH_SHORT).show();
+                DBManager dbManager = new DBManager(CitySelectActivity.this);
+
+                User user = new User(sgetname());
+                user.setCity(((SortModel)adapter.getItem(position)).getCityName());
+                dbManager.updateCity(user);
+
+                Log.d("userc",user.city);
+
+                ssave(sgetname(),((SortModel)adapter.getItem(position)).getCityName());
+                Toast.makeText(getApplication(), "你已经选择 " + ((SortModel)adapter.getItem(position)).getCityName() + " 做为默认城市", Toast.LENGTH_SHORT).show();
+
+                Intent main_intent = new Intent(CitySelectActivity.this, MainActivity.class);
+                startActivity(main_intent);
             }
         });
 
@@ -132,6 +149,30 @@ public class CitySelectActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+
+    //保存当前登录的用户的用户名和偏好城市
+    public void ssave(String user,String city){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",user);
+        editor.putString("city",city);
+        editor.commit();
+    }
+
+    //当前登录的用户名
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
+
+    //当前选择的城市
+    public String sgetcity(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String city = sharedPreferences.getString("city","unknown");
+        return city;
     }
 
 

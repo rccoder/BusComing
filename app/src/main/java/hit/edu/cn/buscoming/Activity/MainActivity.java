@@ -17,125 +17,21 @@ import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
-import hit.edu.cn.buscoming.DB.DBManager;
-import hit.edu.cn.buscoming.DB.User;
 import hit.edu.cn.buscoming.R;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DBManager db = new DBManager(MainActivity.this);
-        User _user = new User("e@gamil.com", "1234");
-        if(db.addUser(_user)) {
-            Toast.makeText(MainActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(MainActivity.this, "已经存在用户", Toast.LENGTH_SHORT).show();
-        }
-        db.closeDB();
-        
-/*
-        new Thread() {
-            public void run() {
-                Log.d("TAGG", "Thread is RUn");
-                RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-                StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=636418115dd805e55190d3edc2548210",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Gson gson = new Gson();
-                            Res _res = new Res();
-                            _res = gson.fromJson(response, Res.class);
-                            Log.d("JSON",  _res.getReason());
-                            Log.d("TAGG", response);
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("TAGG", error.getMessage(), error);
-                        }
-                    }
-                );
-                requestQueue.add(stringRequest);
-            }
+        View test = findViewById(R.id.test);
 
-        }.start();
-*/
-        /*
-        ListView _listv = (ListView)findViewById(R.id.home_listview);
-
-        final List<Map<String, Object>> _data = new ArrayList<Map<String, Object>>();
-
-        Map<String, Object> row1 = new HashMap<String, Object>();
-        row1.put("name", "你好");
-        row1.put("age", "19");
-        row1.put("img", R.drawable.ic_menu_about);
-        _data.add(row1);
-
-        Map<String, Object> row2 = new HashMap<String, Object>();
-        row2.put("name", "你好");
-        row2.put("age", "19");
-        row2.put("img", R.drawable.ic_menu_about);
-        _data.add(row2);
-
-        Map<String, Object> row3 = new HashMap<String, Object>();
-        row3.put("name", "你好");
-        row3.put("age", "19");
-        row3.put("img", R.drawable.ic_menu_about);
-        _data.add(row3);
-
-        SimpleAdapter _simpleAdapter = new SimpleAdapter(this,
-                _data, R.layout.activity_city_select_item,
-                new String[]{"name", "age", "img"},
-                new int[]{R.id.name, R.id.age, R.id.img}
-        );
-        _listv.setAdapter(_simpleAdapter);
-        */
-        /*
-        List<String> _data = new ArrayList<String>();
-        _data.add("1");
-        _data.add("1");
-        _data.add("1");
-        _data.add("1");
-        ArrayAdapter<String> _adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, _data);
-        _listv.setAdapter(_adapter);
-
-        _listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                adapterView.getChildAt(position);
-                Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-                if (position == 1) {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -145,18 +41,41 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     public void fabline (View view)
     {
+        String city="";
+        if ("unknown".equals(sgetcity()))
+        {
+            city="";
+        }
+        else
+        {
+            city = sgetcity();
+        }
         Intent intent = new Intent();
+        intent.putExtra("extra",city);
         intent.setClass(MainActivity.this,LineActivity.class);
         startActivity(intent);
     }
 
     public void fabstop (View view)
     {
-
+        String city="";
+        if ("unknown".equals(sgetcity()))
+        {
+            city="";
+        }
+        else
+        {
+            city = sgetcity();
+        }
+        Intent intent = new Intent();
+        intent.putExtra("extra",city);
+        intent.setClass(MainActivity.this,StationActivity.class);
+        startActivity(intent);
     }
 
     public void fabdes (View view)
@@ -166,7 +85,7 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
 
-    //存储当前登录的用户的用户名和偏好城市
+    //保存当前登录的用户的用户名和偏好城市
     public void ssave(String user,String city){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -175,10 +94,20 @@ public class MainActivity extends BaseActivity
         editor.commit();
     }
 
-    //调用当前用户的用户名和偏好城市
-//    SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
-//    String user = sharedPreferences.getString("user","");
-//    String city = sharedPreferences.getString("city","");
+    //当前登录的用户名
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
+
+    //当前选择的城市
+    public String sgetcity(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss",Context.MODE_PRIVATE);
+        String city = sharedPreferences.getString("city","unknown");
+        return city;
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -194,6 +123,21 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        Log.d("Create Menu", "Created");
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Log.d("Created", "Menu  Created");
+        /*
+        TextView textEmail = (TextView)findViewById(R.id.textEmail);
+        if("unknown".equals(sgetname())) {
+            textEmail.setText("unknow");
+        } else {
+            textEmail.setText(sgetname());
+        }
+        */
         return true;
     }
 
@@ -220,22 +164,58 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            // 登录
         } else if (id == R.id.nav_login) {
-            Intent nav_login_intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(nav_login_intent);
+            if(sgetname().equals("unknown")) {
+                Intent nav_login_intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(nav_login_intent);
+            } else {
+                Toast.makeText(MainActivity.this, "你已登录成功，无需重复登录", Toast.LENGTH_SHORT).show();
+            }
+            // 选择城市
         } else if (id == R.id.nav_city) {
             Intent nav_select_city_intent = new Intent(MainActivity.this, CitySelectActivity.class);
             startActivity(nav_select_city_intent);
+            // 关于
         } else if(id == R.id.nav_about) {
             Intent nav_about_intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(nav_about_intent);
+            // 注销
         }else if(id == R.id.nav_logout) {
-
+            if(sgetname().equals("unknown")) {
+                Toast.makeText(MainActivity.this, "你还没有登录，无法注销", Toast.LENGTH_SHORT).show();
+            } else {
+                ssave("unknown","unknown");
+                Toast.makeText(this, "注销成功", Toast.LENGTH_SHORT).show();
+            }
+            // 退出
         }else if (id == R.id.nav_exit) {
             Log.d("Now", "exit");
+            Toast.makeText(MainActivity.this, "退出成功,别忘了日后打开吆~", Toast.LENGTH_SHORT).show();
             ActivityCollector.finishAll();
+        }else if(id == R.id.nav_offten) {
+            if (sgetname().equals("unknown"))
+            {
+                Toast.makeText(this, "未登录，请先登录再查看常去", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Intent nav_offten_intent = new Intent(MainActivity.this, RecentActivity.class);
+                startActivity(nav_offten_intent);
+            }
+        }else if (id == R.id.nav_star){
+            if (sgetname().equals("unknown"))
+            {
+                Toast.makeText(this, "未登录，请先登录再查看收藏", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Intent nav_star_intent = new Intent(MainActivity.this, StarActivity.class);
+                startActivity(nav_star_intent);
+
+            }
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
