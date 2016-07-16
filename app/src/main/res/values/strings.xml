@@ -55,4 +55,7 @@
     <!-- city selected-->
     <string name="please_input_the_key">请输入关键词查询</string>
 
+    <!--star-->
+    <string name="star_content">收藏</string>
+
 </resources>

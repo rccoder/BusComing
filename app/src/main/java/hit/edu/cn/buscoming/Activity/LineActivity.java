@@ -31,16 +31,41 @@ import hit.edu.cn.buscoming.BusStatsObj.Res;
 import hit.edu.cn.buscoming.BusStatsObj.stats;
 import hit.edu.cn.buscoming.DB.DBManager;
 import hit.edu.cn.buscoming.DB.Recent;
+import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 
 public class LineActivity extends BaseActivity {
+
     public List<Map<String, Object>> mData;
+
 
     public String sgetname(){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("user","unknown");
         return name;
     }
+
+
+    // fab xml 调用
+    public void star_content (View view)
+    {
+        DBManager db = new DBManager(LineActivity.this);
+
+        // rencent 数据库里最近插入的一条记录
+        List<Recent> r = db.getRecent(sgetname(),1,1);
+        Star star = new Star(sgetname(), 1);
+
+        star.setLine_city(r.get(0).getLine_city());
+        star.setLine_line(r.get(0).getLine_line());
+
+        if(db.saveStar(star)) {
+            Toast.makeText(LineActivity.this, "收藏成功:"+r.get(0).getLine_city()+r.get(0).getLine_line(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LineActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +75,6 @@ public class LineActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
-
-
-
-
-
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
@@ -78,7 +98,7 @@ public class LineActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/line?key=2524dba6367ba5aa7d7bed6b3caa424a&city=苏州&q=110",
+                                Request.Method.GET,"http://api.juheapi.com/bus/line?key=6429a563029d7549aaabbf4689eeb01e&city="+city+"&q="+line,
 
                                 new Response.Listener<String>() {
                                     @Override
@@ -115,7 +135,7 @@ public class LineActivity extends BaseActivity {
                                         }
                                         else
                                         {
-                                            _data.add("输入错误");
+                                            _data.add("查询失败");
                                         }
 
                                         ArrayAdapter<String> _adapter = new ArrayAdapter<String>(LineActivity.this,android.R.layout.simple_list_item_1,_data);
@@ -152,4 +172,6 @@ public class LineActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
