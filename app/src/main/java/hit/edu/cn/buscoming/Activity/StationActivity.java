@@ -30,6 +30,7 @@ import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Busstation.Res;
 import hit.edu.cn.buscoming.DB.DBManager;
 import hit.edu.cn.buscoming.DB.Recent;
+import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 
 public class StationActivity extends BaseActivity {
@@ -38,6 +39,26 @@ public class StationActivity extends BaseActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("user","unknown");
         return name;
+    }
+
+    // fab xml 调用
+    public void star_content (View view)
+    {
+        DBManager db = new DBManager(StationActivity.this);
+
+        // rencent 数据库里最近插入的一条记录
+        List<Recent> r = db.getRecent(sgetname(),2,1);
+        Star star = new Star(sgetname(), 2);
+
+        star.setStop_city(r.get(0).getStop_city());
+        star.setStop_stop(r.get(0).getStop_stop());
+
+        if(db.saveStar(star)) {
+            Toast.makeText(StationActivity.this, "收藏成功:"+r.get(0).getStop_city()+r.get(0).getStop_stop(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(StationActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+        }
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +92,7 @@ public class StationActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+station,
+                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=6429a563029d7549aaabbf4689eeb01e&city="+city+"&q="+station,
 
                                 new Response.Listener<String>() {
                                     @Override
@@ -83,7 +104,7 @@ public class StationActivity extends BaseActivity {
                                         DBManager db = new DBManager(StationActivity.this);
 
 
-                                        Recent r = new Recent(sgetname(),1);
+                                        Recent r = new Recent(sgetname(),2);
                                         r.setStop_city(city);
                                         r.setStop_stop(station);
                                         db.saveRecent(r);

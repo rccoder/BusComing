@@ -48,8 +48,16 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
         }
 
         holder.title.setImageResource(R.drawable.ic_menu_home);
-        holder.text.setText(getItem(position).getLine_city());
-        holder.text2.setText(getItem(position).getLine_line());
+        if(getItem(position).getFlag()==1)
+        {
+            holder.text.setText(getItem(position).getLine_city());
+            holder.text2.setText(getItem(position).getLine_line());
+        }
+        else if(getItem(position).getFlag()==2)
+        {
+            holder.text.setText(getItem(position).getStop_city());
+            holder.text2.setText(getItem(position).getStop_stop());
+        }
 
 
         convertView.setBackgroundColor(colors[position]);

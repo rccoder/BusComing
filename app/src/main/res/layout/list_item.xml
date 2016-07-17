@@ -15,6 +15,18 @@
         android:layout_width="27dp"
         android:layout_height="30dp" />
 
+
+    <TextView
+        android:id="@+id/ItemText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:textColor="#8086a4"
+
+        android:textSize="20sp">
+    </TextView>
+
+
     <TextView
         android:id="@+id/ItemText"
         android:layout_width="wrap_content"
@@ -23,25 +35,5 @@
         android:layout_alignParentBottom="true"
         android:textColor="#8086a4"
         android:textSize="15sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/ItemText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/ItemTitle"
-        android:textColor="#8086a4"
-        android:layout_toLeftOf="@id/ItemText"
-        android:textSize="20sp">
-    </TextView>
-    <TextView
-        android:id="@+id/ItemText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/ItemText2"
-        android:layout_marginRight="1dp"
-        android:textColor="#8086a4"
-        android:text="路"
-        android:textSize="16sp">
     </TextView>
 </RelativeLayout>
