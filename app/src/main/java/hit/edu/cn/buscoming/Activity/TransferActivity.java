@@ -31,6 +31,7 @@ import java.util.Map;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Busstation.Res;
+import hit.edu.cn.buscoming.Config;
 import hit.edu.cn.buscoming.R;
 import hit.edu.cn.buscoming.Transfer.Res_transfer;
 import hit.edu.cn.buscoming.Transfer.schema;
@@ -52,7 +53,6 @@ public class TransferActivity extends BaseActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-
         spinner = (Spinner) findViewById(R.id.transferSpinner);
         data_list = new ArrayList<String>();
         data_list.add("0综合排序");
@@ -68,6 +68,9 @@ public class TransferActivity extends BaseActivity {
         final EditText editTextStartstat = (EditText)findViewById(R.id.transferStartET);
         final EditText editTextStarstat = (EditText)findViewById(R.id.transferEndET);
         final String[] rc = new String[1];
+
+        final Config config = (Config) getApplication();
+
         //注册事件
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -110,13 +113,11 @@ public class TransferActivity extends BaseActivity {
                         Log.e("TAGG", "Thread is RUn");
 
                         RequestQueue requestQueue1 = Volley.newRequestQueue(TransferActivity.this);
-                        //StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=dfe24b2fc63686cf2a0b87cc47d050dd",
+
                         final String finalEndStat = endStat;
                         StringRequest jsonObjectRequest1 = new StringRequest(
-                                //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
-                                //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=2524dba6367ba5aa7d7bed6b3caa424a&city="+city+"&q="+startStat,
+                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key="+config.getKey()+"&city="+city+"&q="+startStat,
 
                                 new Response.Listener<String>() {
                                     @Override
@@ -130,12 +131,11 @@ public class TransferActivity extends BaseActivity {
                                         System.out.println(start_lat[0]+" "+start_lng[0]);
 
                                         RequestQueue requestQueue2 = Volley.newRequestQueue(TransferActivity.this);
-                                        //StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=dfe24b2fc63686cf2a0b87cc47d050dd",
-                                        StringRequest jsonObjectRequest2 = new StringRequest(
-                                                //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
-                                                //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=2524dba6367ba5aa7d7bed6b3caa424a&city="+city+"&q="+ finalEndStat,
+                                        StringRequest jsonObjectRequest2 = new StringRequest(
+
+
+                                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key="+config.getKey()+"&city="+city+"&q="+ finalEndStat,
 
                                                 new Response.Listener<String>() {
                                                     @Override
@@ -150,12 +150,11 @@ public class TransferActivity extends BaseActivity {
 
 
                                                         RequestQueue requestQueue = Volley.newRequestQueue(TransferActivity.this);
-                                                        //StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=dfe24b2fc63686cf2a0b87cc47d050dd",
+
                                                         StringRequest jsonObjectRequest = new StringRequest(
-                                                                //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
-                                                                //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
-                                                                Request.Method.GET,"http://api.juheapi.com/bus/transfer?key=2524dba6367ba5aa7d7bed6b3caa424a&city="+city+"&start_lat="+ start_lat[0] +"&start_lng="+ start_lng[0] +"&end_lat="+ end_lat[0] +"&end_lng="+ end_lng[0] +"&rc="+rc[0].charAt(0),
-                                                                //Request.Method.GET,"http://api.juheapi.com/bus/transfer?key=2524dba6367ba5aa7d7bed6b3caa424a&city="+city+"&start_lat=31.26571&start_lng=120.74001&end_lat=31.3218642&end_lng=120.7480923&rc="+rc[0].charAt(0),
+
+                                                                Request.Method.GET,"http://api.juheapi.com/bus/transfer?key="+config.getKey()+"&city="+city+"&start_lat="+ start_lat[0] +"&start_lng="+ start_lng[0] +"&end_lat="+ end_lat[0] +"&end_lng="+ end_lng[0] +"&rc="+rc[0].charAt(0),
+
 
                                                                 new Response.Listener<String>() {
                                                                     @Override

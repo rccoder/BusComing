@@ -43,6 +43,7 @@ public class RecentArrayAdapter extends ArrayAdapter<Recent> {
             holder.text = (TextView) convertView.findViewById(R.id.ItemText);
             holder.text2=(TextView)convertView.findViewById(R.id.ItemText2);
 
+            // 存在问题，需要判断是空的情况
             // 将holder绑定到convertView
             convertView.setTag(holder);
         } else {
