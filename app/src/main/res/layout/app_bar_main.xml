@@ -29,7 +29,7 @@
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--app:srcCompat="@android:drawable/ic_input_add" />-->
 
-    <!--<include layout="@layout/content_main" />-->
+    <include layout="@layout/content_main" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/function"
@@ -62,5 +62,7 @@
             app:fab_icon="@drawable/despic"
             app:fab_title="@string/destext"/>
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

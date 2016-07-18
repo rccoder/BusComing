@@ -13,15 +13,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
 import hit.edu.cn.buscoming.Config;
 import hit.edu.cn.buscoming.R;
+import hit.edu.cn.buscoming.Wea.Weather;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,89 @@ public class MainActivity extends BaseActivity
 
 
         final Config key = (Config) getApplication();
+
+        final TextView main_city = (TextView)findViewById(R.id.main_city);
+        final TextView main_time = (TextView)findViewById(R.id.main_time);
+        final TextView now_temp = (TextView)findViewById(R.id.now_temp);
+        final TextView temprange = (TextView)findViewById(R.id.temprange);
+        final TextView weatext = (TextView)findViewById(R.id.weatext);
+        final TextView update_time = (TextView)findViewById(R.id.update_time);
+//        final TextView dressing_advice = (TextView)findViewById(R.id.dressing_advice);
+//        final TextView uv_index = (TextView)findViewById(R.id.uv_index);
+//        final TextView comfort_index = (TextView)findViewById(R.id.comfort_index);
+//        final TextView drying_index = (TextView)findViewById(R.id.drying_index);
+
+        new Thread() {
+            public void run() {
+                String city="";
+                if ("unknown".equals(sgetcity()))
+                {
+                    city="哈尔滨";
+                }
+                else
+                {
+                    city = sgetcity();
+                }
+                RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+                StringRequest jsonObjectRequest = new StringRequest(
+
+                        Request.Method.GET,"http://v.juhe.cn/weather/index?format=2&cityname="+city+"&key="+"d5da63fc4ddc5a9398bed8867089f1ec",
+
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                //Log.d("TAGG", response.toString());
+                                Gson gson = new Gson();
+                                Weather weather;
+                                weather = gson.fromJson(response,Weather.class);
+
+
+                                main_city.setText(weather.result.today.getCity());
+                                main_time.setText(weather.result.today.getDate_y());
+                                now_temp.setText(weather.result.sk.getTemp());
+                                temprange.setText(weather.result.today.getTemperature());
+                                weatext.setText(weather.result.today.getWeather());
+                                update_time.setText("已更新 " + weather.result.sk.getTime());
+//                                dressing_advice.setText("穿着建议 " + weather.result.getDressing_advice());
+//                                uv_index.setText("紫外线指数 " + weather.result.getUv_index());
+//                                comfort_index.setText("舒适指数 " + weather.result.getComfort_index());
+//                                drying_index.setText("干燥指数 " + weather.result.getDrying_index());
+
+
+//                                ListView _listv = (ListView) findViewById(R.id.home_listview);
+//                                List<String> _data = new ArrayList<String>();
+//
+//                                if (weather.getResultcode()==200)
+//                                {
+//                                    _data.add(weather.result.sk.getTemp());
+//
+//                                }
+//                                else
+//                                {
+//                                    _data.add("输入错误");
+//                                }
+//
+//                                ArrayAdapter<String> _adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,_data);
+//                                _listv.setAdapter(_adapter);
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("TAGG", error.toString());
+                    }
+                }
+                );
+                requestQueue.add(jsonObjectRequest);
+
+            }
+
+        }.start();
     }
+
+
+
 
     public void fabline (View view)
     {
