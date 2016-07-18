@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_transfer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hit.edu.cn.buscoming.Activity.TransferActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-25dp"
+        tools:layout_editor_absoluteY="-1dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:text="@string/transferStartstat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transferStartTV" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:inputType="textPersonName"
+            android:text=""
+            android:ems="10"
+            android:id="@+id/transferStartET"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_main5"
+            app:layout_constraintTop_toTopOf="@+id/activity_main5" />
+
+        <TextView
+            android:text="@string/transferStartstat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transferEndTV" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:ems="10"
+            android:id="@+id/transferEndET" />
+
+        <TextView
+            android:text="@string/transferLike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transferLike" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transferSpinner"
+            />
+
+        <Button
+            android:text="@string/lineserachbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/transfersearch" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/transfersearchresult"/>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
