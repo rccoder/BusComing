@@ -101,12 +101,8 @@ public class LineActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-<<<<<<< HEAD
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,
                                 Request.Method.GET,"http://api.juheapi.com/bus/line?key="+key.getKey()+"&city="+city+"&q="+line,
-=======
-                                Request.Method.GET,"http://api.juheapi.com/bus/line?key=6429a563029d7549aaabbf4689eeb01e&city="+city+"&q="+line,
->>>>>>> 91f9229e9f790485f3a88275c412e11dd397b513
 
                                 new Response.Listener<String>() {
                                     @Override
@@ -143,7 +139,7 @@ public class LineActivity extends BaseActivity {
                                         }
                                         else
                                         {
-                                            _data.add("查询失败");
+                                            _data.add("输入错误");
                                         }
 
                                         ArrayAdapter<String> _adapter = new ArrayAdapter<String>(LineActivity.this,android.R.layout.simple_list_item_1,_data);
