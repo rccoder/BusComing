@@ -2,35 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
     android:layout_height="wrap_content" >
 
-    <TextView
+    <ImageView
         android:id="@+id/ItemTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_width="27dp"
+        android:layout_height="30dp" />
 
-        android:textSize="25sp"
-        android:text="fg">
-    </TextView>
-
-    <TextView
-        android:id="@+id/ItemText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_below="@id/ItemTitle"
-        android:textSize="15sp"
-        android:text="wfdedw">
-    </TextView>
 
     <TextView
         android:id="@+id/ItemText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:textColor="#8086a4"
 
-        android:layout_below="@id/ItemText"
-        android:textSize="15sp"
-        android:text="fdv">
+        android:textSize="20sp">
     </TextView>
 
+
+    <TextView
+        android:id="@+id/ItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="#8086a4"
+        android:textSize="15sp">
+    </TextView>
 </RelativeLayout>
