@@ -56,4 +56,32 @@ tools:context="hit.edu.cn.buscoming.Activity.StationActivity">
         android:id="@+id/stationsearchresult"/>
 </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/function"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:fab_labelStyle="@style/menu_labels_style"
+            app:fab_labelsPosition="left"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginBottom="28dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="9dp">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/linesea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_icon="@drawable/linesea"
+                android:onClick="star_content"
+                app:fab_title="@string/star_content"/>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

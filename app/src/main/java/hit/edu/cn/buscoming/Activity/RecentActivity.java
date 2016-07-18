@@ -40,13 +40,16 @@ public class RecentActivity extends BaseActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         DBManager db = new DBManager(RecentActivity.this);
-        List<Recent> r = db.getRecent(sgetname(),1,2);
+        List<Recent> r = db.getRecent(sgetname(),1,5);
         ListView _listv = (ListView) findViewById(R.id.recent1);
-        r.get(0).setLine_city("search"+r.get(0).getLine_city());
+        r.get(0).setLine_city("城市:"+r.get(0).getLine_city());
+        //r.get(1).setLine_city("城市:"+r.get(1).getLine_city());
+        r.get(0).setLine_line(r.get(0).getLine_line()+"路");
+        //r.get(1).setLine_line(r.get(1).getLine_line()+"路");
         RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
         _listv.setAdapter(_adapter);
 
-        List<Recent> r2 = db.getRecent(sgetname(),1,2);
+        List<Recent> r2 = db.getRecent(sgetname(),2,2);
         ListView _listv2 = (ListView) findViewById(R.id.recent2);
         RecentArrayAdapter _adapter2 = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r2);
         _listv2.setAdapter(_adapter2);

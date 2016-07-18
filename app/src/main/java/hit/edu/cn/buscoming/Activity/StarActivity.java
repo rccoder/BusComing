@@ -48,7 +48,7 @@ public class StarActivity extends BaseActivity {
         StarArrayAdapter _adapter = new StarArrayAdapter(StarActivity.this,R.layout.list_item,s);
         _listv.setAdapter(_adapter);
 
-        List<Star> s2 = db.getStar(sgetname(),1,2);
+        List<Star> s2 = db.getStar(sgetname(),2,2);
         ListView _listv2 = (ListView) findViewById(R.id.star2);
         StarArrayAdapter _adapter2 = new StarArrayAdapter(StarActivity.this,R.layout.list_item,s2);
         _listv2.setAdapter(_adapter2);
