@@ -28,6 +28,7 @@ import java.util.Map;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Busstation.Res;
+import hit.edu.cn.buscoming.Config;
 import hit.edu.cn.buscoming.DB.DBManager;
 import hit.edu.cn.buscoming.DB.Recent;
 import hit.edu.cn.buscoming.R;
@@ -54,6 +55,8 @@ public class StationActivity extends BaseActivity {
 
         editTextcity.setText(city);
 
+        final Config key = (Config) getApplication();
+
         Button button = (Button)findViewById(R.id.stationsearch);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -71,7 +74,7 @@ public class StationActivity extends BaseActivity {
                                 //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
                                 //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+station,
+                                Request.Method.GET,"http://api.juheapi.com/bus/stat?key="+key.getKey()+"&city="+city+"&q="+station,
 
                                 new Response.Listener<String>() {
                                     @Override

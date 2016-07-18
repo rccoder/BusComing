@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
+import hit.edu.cn.buscoming.Config;
 import hit.edu.cn.buscoming.R;
 
 public class MainActivity extends BaseActivity
@@ -42,6 +43,8 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        final Config key = (Config) getApplication();
     }
 
     public void fabline (View view)
