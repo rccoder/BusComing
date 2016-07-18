@@ -82,7 +82,7 @@ public class LineActivity extends BaseActivity {
 
         editTextcity.setText(city);
 
-        final Config key = (Config) getApplication();
+        final Config config = (Config) getApplication();
 
         Button button = (Button)findViewById(R.id.linesearch);
         button.setOnClickListener(new Button.OnClickListener(){
@@ -96,13 +96,10 @@ public class LineActivity extends BaseActivity {
                         final String line = editTextline.getText().toString();
                         Log.e("TAGG", "Thread is RUn");
                         RequestQueue requestQueue = Volley.newRequestQueue(LineActivity.this);
-                        //StringRequest stringRequest = new StringRequest("http://api.juheapi.com/bus/citys?key=dfe24b2fc63686cf2a0b87cc47d050dd",
-                        StringRequest jsonObjectRequest = new StringRequest(
-                                //JsonObjectRequest jsonobjectrequest = new JsonObjectRequest(
-                                //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,null,
 
-                                //Request.Method.GET,"http://api.juheapi.com/bus/line?key=dfe24b2fc63686cf2a0b87cc47d050dd&city="+city+"&q="+line,
-                                Request.Method.GET,"http://api.juheapi.com/bus/line?key="+key.getKey()+"&city="+city+"&q="+line,
+                        StringRequest jsonObjectRequest = new StringRequest(
+
+                                Request.Method.GET,"http://api.juheapi.com/bus/line?key="+config.getKey()+"&city="+city+"&q="+line,
 
                                 new Response.Listener<String>() {
                                     @Override
