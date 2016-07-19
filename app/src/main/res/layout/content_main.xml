@@ -58,14 +58,13 @@
             </LinearLayout>
 
 
-
             <TextView
                 android:text="Te"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:id="@+id/now_temp"
                 android:textSize="60dp"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom"
                 android:gravity="center_vertical"
                 android:layout_weight="1" />
 
@@ -73,7 +72,7 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="left"
+                android:gravity="bottom"
                 android:layout_weight="1">
 
                 <TextView
@@ -90,7 +89,9 @@
                     android:layout_height="32dp"
                     android:textSize="20dp"
                     android:gravity="bottom"
-                    android:id="@+id/weatext" />
+                    android:id="@+id/weatext"
+                    android:maxLength="5"
+                    android:maxLines="1" />
         </LinearLayout>
 
 
@@ -98,6 +99,7 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="10dp"
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +112,11 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/gray"></LinearLayout>
+            android:background="@color/gray">
+
+        </LinearLayout>
+
+
 
         <!--<TextView-->
             <!--android:layout_marginTop="5dp"-->

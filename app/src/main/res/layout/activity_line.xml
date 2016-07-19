@@ -16,43 +16,107 @@
         tools:layout_editor_absoluteY="-1dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:text="@string/cityinput"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/inputcitytext" />
+            android:layout_height="80dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    >
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:inputType="textPersonName"
-            android:text=" "
-            android:ems="10"
-            android:id="@+id/inputcity"
-            app:layout_constraintLeft_toLeftOf="@+id/activity_main5"
-            app:layout_constraintTop_toTopOf="@+id/activity_main5" />
+                    <TextView
+                        android:text="@string/cityinput"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/inputcitytext"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:text="@string/lineinput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/inputlinetext" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:text=" "
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:id="@+id/inputcity"
+                        android:layout_gravity="center_vertical"
+                        app:layout_constraintLeft_toLeftOf="@+id/activity_main5"
+                        app:layout_constraintTop_toTopOf="@+id/activity_main5"
+                        android:layout_weight="1"/>
+                </LinearLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text=""
-            android:ems="10"
-            android:id="@+id/inputline" />
 
-        <Button
-            android:text="@string/lineserachbutton"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:text="@string/lineinput"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/inputlinetext"
+                        android:textSize="18dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:id="@+id/inputline"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/search"
+                    android:id="@+id/linesearch"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linesearch" />
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            ></LinearLayout>
 
         <ListView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linesearchresult"/>

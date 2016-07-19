@@ -38,8 +38,8 @@
     <string name="large_text">"请选择你的城市"</string>
     <string name="title_activity_reg">注册</string>
     <!-- Strings line -->
-    <string name="cityinput">请输入城市</string>
-    <string name="lineinput">请输入线路</string>
+    <string name="cityinput">城市</string>
+    <string name="lineinput">线路</string>
     <string name="stationinput">请输入站点</string>
     <string name="lineserachbutton">查询</string>
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -84,7 +85,7 @@ public class LineActivity extends BaseActivity {
 
         final Config config = (Config) getApplication();
 
-        Button button = (Button)findViewById(R.id.linesearch);
+        ImageButton button = (ImageButton)findViewById(R.id.linesearch);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
