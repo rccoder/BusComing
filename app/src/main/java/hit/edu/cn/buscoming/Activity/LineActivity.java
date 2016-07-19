@@ -86,7 +86,7 @@ public class LineActivity extends BaseActivity {
         final Config config = (Config) getApplication();
 
         ImageButton button = (ImageButton)findViewById(R.id.linesearch);
-        button.setOnClickListener(new Button.OnClickListener(){
+        button.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Toast.makeText(LineActivity.this, "searching", Toast.LENGTH_SHORT).show();
@@ -100,6 +100,7 @@ public class LineActivity extends BaseActivity {
 
                         StringRequest jsonObjectRequest = new StringRequest(
 
+//                                Request.Method.GET,"http://api.juheapi.com/bus/line?key="+config.getKey()+"&city=苏州&q=110",
                                 Request.Method.GET,"http://api.juheapi.com/bus/line?key="+config.getKey()+"&city="+city+"&q="+line,
 
                                 new Response.Listener<String>() {

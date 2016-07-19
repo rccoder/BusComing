@@ -15,60 +15,227 @@
         tools:layout_editor_absoluteY="-1dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:text="@string/transferStartstat"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferStartTV" />
+            android:layout_height="120dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    >
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:inputType="textPersonName"
-            android:text=""
-            android:ems="10"
-            android:id="@+id/transferStartET"
-            app:layout_constraintLeft_toLeftOf="@+id/activity_main5"
-            app:layout_constraintTop_toTopOf="@+id/activity_main5" />
+                    <TextView
+                        android:text="@string/transferStartstat"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/transferStartTV"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:text="@string/transferStartstat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferEndTV" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:text=" "
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:id="@+id/transferStartET"
+                        android:layout_gravity="center_vertical"
+                        app:layout_constraintLeft_toLeftOf="@+id/activity_main5"
+                        app:layout_constraintTop_toTopOf="@+id/activity_main5"
+                        android:layout_weight="1"/>
+                </LinearLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text=""
-            android:ems="10"
-            android:id="@+id/transferEndET" />
 
-        <TextView
-            android:text="@string/transferLike"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferLike" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferSpinner"
-            />
 
-        <Button
-            android:text="@string/lineserachbutton"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:text="@string/transferStartstat"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/transferEndTV"
+                        android:textSize="18dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:id="@+id/transferEndET"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:text="@string/transferLike"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/transferLike"
+                        android:textSize="18dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:id="@+id/transferSpinner"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/search"
+                    android:id="@+id/transfersearch"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transfersearch" />
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            ></LinearLayout>
 
         <ListView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/transfersearchresult"/>
-
-
     </LinearLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/function"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:fab_labelStyle="@style/menu_labels_style"
+            app:fab_labelsPosition="left"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginBottom="28dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="9dp">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/linesea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_icon="@drawable/linesea"
+                android:onClick="star_content"
+                app:fab_title="@string/star_content"/>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
+
+        <!--<TextView-->
+            <!--android:text="@string/transferStartstat"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/transferStartTV" />-->
+
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="44dp"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:text=""-->
+            <!--android:ems="10"-->
+            <!--android:id="@+id/transferStartET"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/activity_main5"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/activity_main5" />-->
+
+        <!--<TextView-->
+            <!--android:text="@string/transferStartstat"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/transferEndTV" />-->
+
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:text=""-->
+            <!--android:ems="10"-->
+            <!--android:id="@+id/transferEndET" />-->
+
+        <!--<TextView-->
+            <!--android:text="@string/transferLike"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/transferLike" />-->
+
+        <!--<Spinner-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/transferSpinner"-->
+            <!--/>-->
+
+        <!--<Button-->
+            <!--android:text="@string/lineserachbutton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/transfersearch" />-->
+
+        <!--<ListView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/transfersearchresult"/>-->
+
+
+    <!--</LinearLayout>-->
+
+<!--</android.support.constraint.ConstraintLayout>-->

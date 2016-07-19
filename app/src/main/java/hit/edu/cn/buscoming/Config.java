@@ -19,7 +19,7 @@ public class Config extends Application {
 
     @Override
     public  void onCreate(){
-        key = "ee6e88d0ff36a930d88e282370fa5879";
+        key = "2524dba6367ba5aa7d7bed6b3caa424a";
         super.onCreate();
     }
 }

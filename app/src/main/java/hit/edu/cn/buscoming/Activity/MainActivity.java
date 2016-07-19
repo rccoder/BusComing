@@ -176,7 +176,17 @@ public class MainActivity extends BaseActivity
 
     public void fabdes (View view)
     {
+        String city = "";
+        if ("unknown".equals(sgetcity()))
+        {
+            city="";
+        }
+        else
+        {
+            city = sgetcity();
+        }
         Intent intent = new Intent();
+        intent.putExtra("extra",city);
         intent.setClass(MainActivity.this,TransferActivity.class);
         startActivity(intent);
     }
