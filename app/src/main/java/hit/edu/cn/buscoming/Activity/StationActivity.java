@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -78,7 +79,7 @@ public class StationActivity extends BaseActivity {
 
         final Config config = (Config) getApplication();
 
-        Button button = (Button)findViewById(R.id.stationsearch);
+        ImageButton button = (ImageButton)findViewById(R.id.stationsearch);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -93,6 +94,7 @@ public class StationActivity extends BaseActivity {
 
                         StringRequest jsonObjectRequest = new StringRequest(
 
+                                
                                 Request.Method.GET,"http://api.juheapi.com/bus/stat?key="+config.getKey()+"&city="+city+"&q="+station,
 
                                 new Response.Listener<String>() {
