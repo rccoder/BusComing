@@ -18,7 +18,7 @@ import hit.edu.cn.buscoming.R;
  */
 
 public class StarArrayAdapter extends ArrayAdapter<Star> {
-    private int[] colors = new int[] { 0xff3cb371, 0xffa0a0a0 };
+    //private int[] colors = new int[] { 0xff3cb371, 0xffa0a0a0 };
     private Context mContext;
     private int resource;
 
@@ -40,6 +40,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             holder.title = (ImageView) convertView.findViewById(R.id.ItemTitle);
             holder.text = (TextView) convertView.findViewById(R.id.ItemText);
             holder.text2=(TextView)convertView.findViewById(R.id.ItemText2);
+            holder.text3=(TextView)convertView.findViewById(R.id.ItemText3);
 
             // 将holder绑定到convertView
             convertView.setTag(holder);
@@ -47,7 +48,7 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             holder = (StarArrayAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.title.setImageResource(R.drawable.ic_menu_home);
+        holder.title.setImageResource(R.drawable.streetsign);
         if(getItem(position).getFlag()==1)
         {
             holder.text.setText(getItem(position).getLine_city());
@@ -58,9 +59,15 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
             holder.text.setText(getItem(position).getStop_city());
             holder.text2.setText(getItem(position).getStop_stop());
         }
+        else if(getItem(position).getFlag()==3)
+        {
+            holder.text.setText(getItem(position).getDes_city());
+            holder.text2.setText(getItem(position).getDes_src());
+            holder.text3.setText(getItem(position).getDes_des());
+        }
 
 
-        convertView.setBackgroundColor(colors[position]);
+
 
         return convertView;
     }
@@ -72,6 +79,6 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
         //ImageView image;
         ImageView title;
         TextView text;
-        TextView text2;
+        TextView text2; TextView text3;
     }
 }

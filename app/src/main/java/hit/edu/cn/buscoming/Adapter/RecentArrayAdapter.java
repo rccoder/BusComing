@@ -42,6 +42,7 @@ public class RecentArrayAdapter extends ArrayAdapter<Recent> {
             holder.image = (ImageView) convertView.findViewById(R.id.ItemTitle);
             holder.text = (TextView) convertView.findViewById(R.id.ItemText);
             holder.text2=(TextView)convertView.findViewById(R.id.ItemText2);
+            holder.text3=(TextView)convertView.findViewById(R.id.ItemText3);
 
             // 存在问题，需要判断是空的情况
             // 将holder绑定到convertView
@@ -61,6 +62,12 @@ public class RecentArrayAdapter extends ArrayAdapter<Recent> {
             holder.text.setText(getItem(position).getStop_city());
             holder.text2.setText(getItem(position).getStop_stop());
         }
+        else if(getItem(position).getFlag()==3)
+        {
+            holder.text.setText(getItem(position).getDes_city());
+            holder.text2.setText(getItem(position).getDes_src());
+            holder.text3.setText(getItem(position).getDes_des());
+        }
 
 
         //convertView.setBackgroundColor(colors[position]);
@@ -76,5 +83,6 @@ public class RecentArrayAdapter extends ArrayAdapter<Recent> {
         ImageView image;
         TextView text;
         TextView text2;
+        TextView text3;
     }
 }

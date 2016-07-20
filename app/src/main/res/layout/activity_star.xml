@@ -1,55 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_star"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hit.edu.cn.buscoming.Activity.StarActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"/>
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-        <TextView
-            android:text="TextView1"
-            android:textSize="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#303F9F"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="@dimen/fab_margin"
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_below="@id/textView1"
-            android:layout_height="wrap_content"
-            android:id="@+id/star1" />
+        android:id="@+id/starText" />
 
-        <TextView
-            android:text="TextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/star1"
-            android:id="@+id/textView2" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_below="@id/starText"
+        android:layout_height="wrap_content"
+        android:id="@+id/star1" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_below="@id/textView2"
-            android:layout_height="wrap_content"
-            android:id="@+id/star2" />
-
-        <TextView
-            android:text="TextView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recent2"
-            android:id="@+id/textView3" />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_below="@id/textView3"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -36,4 +36,15 @@
         android:textColor="#8086a4"
         android:textSize="15sp">
     </TextView>
+
+    <TextView
+        android:id="@+id/ItemText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_toRightOf="@id/ItemText2"
+        android:textColor="#8086a4"
+
+        android:textSize="20sp">
+    </TextView>
+
 </RelativeLayout>

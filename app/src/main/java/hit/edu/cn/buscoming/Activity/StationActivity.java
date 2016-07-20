@@ -48,7 +48,7 @@ public class StationActivity extends BaseActivity {
         DBManager db = new DBManager(StationActivity.this);
 
         // rencent 数据库里最近插入的一条记录
-        List<Recent> r = db.getRecent(sgetname(),2,1);
+        List<Recent> r = db.getRecent(sgetname(),2,2);
         Star star = new Star(sgetname(), 2);
 
         star.setStop_city(r.get(0).getStop_city());

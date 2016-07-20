@@ -180,7 +180,16 @@ public class DBManager {
 
             recentList.add(recent);
         }
+        if (recentList.isEmpty()==true)
+        {
+            Recent r = new Recent(email,flag);
+            r.setLine_city("默认：北京");
+            r.setLine_line("0");
+            recentList.add(r);
+        }
         return recentList;
+
+
     }
 
     /*
@@ -237,6 +246,11 @@ public class DBManager {
             star.setDes_des(cursor.getString(cursor.getColumnIndex("des_des")));
 
             starList.add(star);
+        }
+        if (starList.isEmpty()==true)
+        {
+            Star s = new Star(email, flag);
+            starList.add(s);
         }
         return starList;
     }
