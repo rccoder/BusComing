@@ -1,67 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_station"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="hit.edu.cn.buscoming.Activity.StationActivity">
-
-<LinearLayout
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_station"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="-25dp"
-    tools:layout_editor_absoluteY="-1dp">
+    tools:context="hit.edu.cn.buscoming.Activity.LineActivity">
 
-    <TextView
-        android:text="@string/cityinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputcitytext1" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:inputType="textPersonName"
-        android:text=" "
-        android:ems="10"
-        android:id="@+id/inputcity1"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_main6"
-        app:layout_constraintTop_toTopOf="@+id/activity_main6" />
-
-    <TextView
-        android:text="@string/stationinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputstationtext" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text=""
-        android:ems="10"
-        android:id="@+id/inputstation" />
-
-    <Button
-        android:text="@string/lineserachbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stationsearch" />
-
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/stationsearchresult"/>
-</LinearLayout>
+        tools:layout_editor_absoluteX="-25dp"
+        tools:layout_editor_absoluteY="-1dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    >
+
+                    <TextView
+                        android:text="@string/cityinput"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/inputcitytext1"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:text=" "
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:id="@+id/inputcity1"
+                        android:layout_gravity="center_vertical"
+                        app:layout_constraintLeft_toLeftOf="@+id/activity_main6"
+                        app:layout_constraintTop_toTopOf="@+id/activity_main6"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:text="@string/stationinput"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/inputstationtext1"
+                        android:textSize="18dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textSize="18dp"
+                        android:ems="10"
+                        android:layout_weight="1"
+                        android:id="@+id/inputstation"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/search"
+                    android:id="@+id/stationsearch"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            ></LinearLayout>
+
+        <ListView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/stationsearchresult"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/function"
+            android:id="@+id/function1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -75,7 +141,7 @@ tools:context="hit.edu.cn.buscoming.Activity.StationActivity">
             android:layout_marginEnd="9dp">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/linesea"
+                android:id="@+id/stationsea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_icon="@drawable/linesea"
