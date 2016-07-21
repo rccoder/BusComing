@@ -23,11 +23,11 @@
         app:srcCompat="@drawable/ic_menu_unknow" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewpls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="请点击按钮登录" />
+        android:text="@string/pls" />
 
     <TextView
         android:layout_width="match_parent"

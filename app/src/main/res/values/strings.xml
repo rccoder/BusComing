@@ -19,6 +19,7 @@
 
     <string name="action_settings">设置</string>
     <string name="unlogin">未登录</string>
+    <string name="pls">请点击按钮登录</string>
     <string name="title_activity_login">登录</string>
     <string name="no_username_and_reg">没有账号？注册一个</string>
 
@@ -57,5 +58,6 @@
 
     <!--star-->
     <string name="star_content">收藏</string>
+
 
 </resources>
