@@ -59,6 +59,12 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+//        未登录
+//        if(sgetname().equals("unknown")){
+//
+//        }
+
+
         ListView _listv = (ListView) findViewById(R.id.homebiglist);
         List<String> _data = new ArrayList<String>();
         _data.add("热门收藏");
