@@ -59,10 +59,14 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
 //        未登录
 //        if(sgetname().equals("unknown")){
 //
 //        }
+
+
 
 
         ListView _listv = (ListView) findViewById(R.id.homebiglist);
@@ -239,6 +243,18 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        if(!sgetname().equals("unknown")){
+            TextView textpls = (TextView)findViewById(R.id.textViewpls);
+            TextView textname = (TextView)findViewById(R.id.textEmail);
+            textname.setText(sgetname());
+            textpls.setText(sgetcity());
+        }
+        if(sgetname().equals("unknown")){
+            TextView textpls = (TextView)findViewById(R.id.textViewpls);
+            TextView textname = (TextView)findViewById(R.id.textEmail);
+            textname.setText("未登录");
+            textpls.setText("请点击按钮登录");
+        }
         Log.d("Create Menu", "Created");
         return true;
     }
@@ -259,6 +275,8 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         // Handle action bar activity_city_select_item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
