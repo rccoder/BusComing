@@ -14,15 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-=======
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
->>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +29,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-=======
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -44,15 +36,15 @@ import java.util.List;
 
 import hit.edu.cn.buscoming.Adapter.RecentArrayAdapter;
 
->>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
 import hit.edu.cn.buscoming.Config;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.Recent;
 import hit.edu.cn.buscoming.R;
 import hit.edu.cn.buscoming.Wea.Weather;
 
@@ -118,14 +110,6 @@ public class MainActivity extends BaseActivity
            mytext.setText("最近查询");
        }
 
-
-
-<<<<<<< HEAD
-            }
-        });
-
-=======
->>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 
         final Config key = (Config) getApplication();
 

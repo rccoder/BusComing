@@ -131,14 +131,6 @@
         </LinearLayout>
 
 
-
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="185dp">

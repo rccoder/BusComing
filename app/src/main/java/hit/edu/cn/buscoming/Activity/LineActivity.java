@@ -82,10 +82,6 @@ public class LineActivity extends BaseActivity {
         rc = intent.getStringExtra("city");
         rl = intent.getStringExtra("line");
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
         String line = intent.getStringExtra("extraline");
 
 
