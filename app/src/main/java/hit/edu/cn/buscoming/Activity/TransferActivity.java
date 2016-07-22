@@ -1,6 +1,8 @@
 package hit.edu.cn.buscoming.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,9 @@ import java.util.Map;
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Busstation.Res;
 import hit.edu.cn.buscoming.Config;
+import hit.edu.cn.buscoming.DB.DBManager;
+import hit.edu.cn.buscoming.DB.Recent;
+import hit.edu.cn.buscoming.DB.Star;
 import hit.edu.cn.buscoming.R;
 import hit.edu.cn.buscoming.Transfer.Res_transfer;
 import hit.edu.cn.buscoming.Transfer.schema;
@@ -40,6 +45,33 @@ public class TransferActivity extends BaseActivity {
     private Spinner spinner;
     private List<String> data_list;
     private ArrayAdapter<String> arr_Adapter;
+
+    public String sgetname(){
+        SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("user","unknown");
+        return name;
+    }
+
+    // fab xml 调用
+    public void star_content (View view)
+    {
+        DBManager db = new DBManager(TransferActivity.this);
+
+        // rencent 数据库里最近插入的一条记录
+        List<Recent> r = db.getRecent(sgetname(),3,1);
+        Star star = new Star(sgetname(), 2);
+
+        star.setDes_city(r.get(0).getDes_city());
+        star.setDes_src(r.get(0).getDes_src());
+        star.setDes_des(r.get(0).getDes_des());
+
+        if(db.saveStar(star)) {
+            Toast.makeText(TransferActivity.this, "收藏成功:"+r.get(0).getDes_city()+"出发地："+r.get(0).getDes_src(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(TransferActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +124,9 @@ public class TransferActivity extends BaseActivity {
                 new Thread() {
                     public void run() {
 
-                        String startStat = editTextStartstat.getText().toString();
-                        String endStat = editTextStarstat.getText().toString();
+                        final String startStat = editTextStartstat.getText().toString();
+                        final String endStat = editTextStarstat.getText().toString();
+                        final String descity=city.toString();
 
 //                        startStat = "松涛街创苑路北";
 //                        endStat = "海悦花园四区";
@@ -168,6 +201,19 @@ public class TransferActivity extends BaseActivity {
                                                                         Gson gson = new Gson();
                                                                         Res_transfer res;
                                                                         res = gson.fromJson(response,Res_transfer.class);
+
+
+
+                                                                        DBManager db = new DBManager(TransferActivity.this);
+
+
+                                                                        Recent r = new Recent(sgetname(),1);
+                                                                        r.setDes_city(descity);
+                                                                        r.setDes_src(startStat);
+                                                                        r.setDes_des(endStat);
+                                                                        db.saveRecent(r);
+
+
 
                                                                         ListView _listv = (ListView) findViewById(R.id.transfersearchresult);
                                                                         List<String> _data = new ArrayList<String>();

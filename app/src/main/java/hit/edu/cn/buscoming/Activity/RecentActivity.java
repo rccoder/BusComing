@@ -1,6 +1,7 @@
 package hit.edu.cn.buscoming.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,8 +10,10 @@ import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,7 @@ public class RecentActivity extends BaseActivity {
     private MyPagerAdapter mAdapter;
     private ListView lv;
     private TextView txt;
+    private  List<Recent> r;
 
 
     public String sgetname(){
@@ -65,7 +69,7 @@ public class RecentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent);
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
@@ -101,24 +105,44 @@ public class RecentActivity extends BaseActivity {
                 if(position==0)
                 {
 
-                    List<Recent> r = db.getRecent(sgetname(),1,5);
+                    r = db.getRecent(sgetname(),1,10);
 
-                    r.get(0).setLine_city("城市:"+r.get(0).getLine_city());
-                    r.get(0).setLine_line(r.get(0).getLine_line()+"路");
                     RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
                     lv.setAdapter(_adapter);
                     txt.setText("最近查询路线");
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            adapterView.getChildAt(i);
+                            Toast.makeText(RecentActivity.this,"查询第"+String.valueOf(i)+"个路线",Toast.LENGTH_SHORT);
+                            Intent intent=new Intent(RecentActivity.this,LineActivity.class);
+                            intent.putExtra("city",r.get(i).getLine_city());
+                            intent.putExtra("line",r.get(i).getLine_line());
+                            startActivity(intent);
+                        }
+                    });
                 }
                 else if(position==1)
                 {
-                    List<Recent> r = db.getRecent(sgetname(),2,5);
+                    r = db.getRecent(sgetname(),2,5);
                     RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
                     lv.setAdapter(_adapter);
                     txt.setText("最近查询站点");
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            adapterView.getChildAt(i);
+                            Toast.makeText(RecentActivity.this,"查询第"+String.valueOf(i)+"个站点",Toast.LENGTH_SHORT);
+                            Intent intent=new Intent(RecentActivity.this,StationActivity.class);
+                            intent.putExtra("city",r.get(i).getStop_city());
+                            intent.putExtra("line",r.get(i).getStop_stop());
+                            startActivity(intent);
+                        }
+                    });
                 }
                 else
                 {
-                    List<Recent> r = db.getRecent(sgetname(),3,5);
+                    r = db.getRecent(sgetname(),3,5);
                     RecentArrayAdapter _adapter = new RecentArrayAdapter(RecentActivity.this,R.layout.list_item,r);
                     lv.setAdapter(_adapter);
                     txt.setText("最近查询两点路线");

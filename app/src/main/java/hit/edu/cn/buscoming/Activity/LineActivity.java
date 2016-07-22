@@ -39,6 +39,8 @@ import hit.edu.cn.buscoming.R;
 public class LineActivity extends BaseActivity {
 
     public List<Map<String, Object>> mData;
+    private String rc;
+    private String rl;
 
 
     public String sgetname(){
@@ -77,11 +79,19 @@ public class LineActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
+        rc = intent.getStringExtra("city");
+        rl = intent.getStringExtra("line");
+
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
 
+        if(rl!=null &&rl.isEmpty()==false)
+        {
+            editTextline.setText(rl);
+        }
         editTextcity.setText(city);
+
 
         final Config config = (Config) getApplication();
 
@@ -95,6 +105,7 @@ public class LineActivity extends BaseActivity {
 
                         final String city = editTextcity.getText().toString();
                         final String line = editTextline.getText().toString();
+
                         Log.e("TAGG", "Thread is RUn");
                         RequestQueue requestQueue = Volley.newRequestQueue(LineActivity.this);
 

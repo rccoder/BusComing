@@ -51,19 +51,45 @@ public class StarArrayAdapter extends ArrayAdapter<Star> {
         holder.title.setImageResource(R.drawable.streetsign);
         if(getItem(position).getFlag()==1)
         {
-            holder.text.setText(getItem(position).getLine_city());
-            holder.text2.setText(getItem(position).getLine_line());
+            if(getItem(position).getLine_line()==null)
+            {
+                holder.text.setText(getItem(position).getLine_city());
+                holder.text2.setText(getItem(position).getLine_line());
+            }
+            else
+            {
+                holder.text.setText("城市："+getItem(position).getLine_city());
+                holder.text2.setText(getItem(position).getLine_line()+"路");
+            }
+
         }
         else if(getItem(position).getFlag()==2)
         {
-            holder.text.setText(getItem(position).getStop_city());
-            holder.text2.setText(getItem(position).getStop_stop());
+            if(getItem(position).getStop_stop()==null)
+            {
+                holder.text.setText(getItem(position).getStop_city());
+                holder.text2.setText(getItem(position).getStop_stop());
+            }
+            else
+            {
+                holder.text.setText("城市："+getItem(position).getStop_city());
+                holder.text2.setText(getItem(position).getStop_stop());
+            }
         }
         else if(getItem(position).getFlag()==3)
         {
-            holder.text.setText(getItem(position).getDes_city());
-            holder.text2.setText(getItem(position).getDes_src());
-            holder.text3.setText(getItem(position).getDes_des());
+            if(getItem(position).getDes_src()==null)
+            {
+                holder.text.setText(getItem(position).getDes_city());
+                holder.text2.setText(getItem(position).getDes_src());
+                holder.text3.setText(getItem(position).getDes_des());
+            }
+            else
+            {
+                holder.text.setText("城市："+getItem(position).getDes_city());
+                holder.text2.setText("起始："+getItem(position).getDes_src());
+                holder.text3.setText(" 到达："+getItem(position).getDes_des());
+            }
         }
 
 

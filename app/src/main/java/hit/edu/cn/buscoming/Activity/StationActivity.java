@@ -37,6 +37,8 @@ import hit.edu.cn.buscoming.R;
 
 public class StationActivity extends BaseActivity {
     public List<Map<String, Object>> mData;
+    private String rc;
+    private String rl;
     public String sgetname(){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("user","unknown");
@@ -49,7 +51,7 @@ public class StationActivity extends BaseActivity {
         DBManager db = new DBManager(StationActivity.this);
 
         // rencent 数据库里最近插入的一条记录
-        List<Recent> r = db.getRecent(sgetname(),2,2);
+        List<Recent> r = db.getRecent(sgetname(),2,1);
         Star star = new Star(sgetname(), 2);
 
         star.setStop_city(r.get(0).getStop_city());
@@ -71,11 +73,21 @@ public class StationActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
+        rc = intent.getStringExtra("city");
+        rl = intent.getStringExtra("line");
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity1);
         final EditText editTextstation = (EditText)findViewById(R.id.inputstation);
 
-        editTextcity.setText(city);
+        if(rl.isEmpty()==false)
+        {
+            editTextcity.setText(rc);
+            editTextstation.setText(rl);
+        }
+        else
+        {
+            editTextcity.setText(city);
+        }
 
         final Config config = (Config) getApplication();
 
