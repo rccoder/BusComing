@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +14,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+=======
+
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
+>>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +35,20 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+<<<<<<< HEAD
+=======
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import hit.edu.cn.buscoming.Adapter.RecentArrayAdapter;
+
+>>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
@@ -63,40 +83,49 @@ public class MainActivity extends BaseActivity
 
 
 //        未登录
-//        if(sgetname().equals("unknown")){
-//
-//        }
+       if(sgetname().equals("unknown")){
+           TextView mytext = (TextView)findViewById(R.id.mytext);
+           mytext.setText("未登录");
+
+
+        }
+        else
+       {
+
+           ListView mylist = (ListView)findViewById(R.id.homebiglist);
+           TextView mytext = (TextView)findViewById(R.id.mytext);
+           DBManager db = new DBManager(MainActivity.this);
+           final List<Recent> r=db.getRecent(sgetname(),1,db.getnum("recent",1));
+           int b= db.getnum("recent",2);
+           int a=0;
+           while(a<b)
+           {
+               r.add(db.getRecent(sgetname(),2,b).get(a));
+               a++;
+           }
+           b= db.getnum("recent",3);
+           a=0;
+           while(a<b)
+           {
+               r.add(db.getRecent(sgetname(),3,b).get(a));
+               a++;
+           }
 
 
 
-
-        ListView _listv = (ListView) findViewById(R.id.homebiglist);
-        List<String> _data = new ArrayList<String>();
-        _data.add("热门收藏");
-        _data.add("1.哈尔滨->63路");
-        _data.add("2");
-        _data.add("3");
+           RecentArrayAdapter _adapter = new RecentArrayAdapter(MainActivity.this,R.layout.list_item,r);
+           mylist.setAdapter(_adapter);
+           mytext.setText("最近查询");
+       }
 
 
-        ArrayAdapter<String> _adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,_data);
-        _listv.setAdapter(_adapter);
-        _listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                adapterView.getChildAt(i);
-                Toast.makeText(MainActivity.this, String.valueOf(i), Toast.LENGTH_SHORT).show();
-                if (i==1)
-                {
-                    Intent intent = new Intent();
-                    intent.putExtra("extra","哈尔滨");
-                    intent.putExtra("extraline","63");
-                    intent.setClass(MainActivity.this,LineActivity.class);
-                    startActivity(intent);
-                }
 
+<<<<<<< HEAD
             }
         });
 
+=======
+>>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
 
         final Config key = (Config) getApplication();
 

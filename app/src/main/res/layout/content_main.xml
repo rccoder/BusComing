@@ -135,6 +135,10 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 621640fb2afdca8afa9d7322baa4f5fe7d04a2d9
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="185dp">
@@ -149,13 +153,23 @@
         android:layout_height="1dp"
         android:orientation="vertical"
         android:background="@color/gray"></LinearLayout>
+
+        <TextView
+            android:id="@+id/mytext"
+            android:textSize="15dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <ListView
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/homebiglist"/>
->>>>>>> 153f45f23ee0f1e5c68152f449522ff11942f1a8
-        <!--<TextView-->
+
+
+
+    <!--<TextView-->
             <!--android:layout_marginTop="5dp"-->
             <!--android:text="TextView"-->
             <!--android:layout_width="match_parent"-->
