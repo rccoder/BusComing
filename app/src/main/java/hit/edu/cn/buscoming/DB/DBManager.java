@@ -24,6 +24,13 @@ public class DBManager {
         db = helper.getWritableDatabase();
     }
 
+    public int getnum(String table,int a)
+    {
+        Cursor cursor = db.query(table, new String[]{"_id"}, "flag=?", new String[]{String.valueOf(a)}, null, null,null);
+        return cursor.getCount();
+
+    }
+
     /**
      * 添加用户
      * @param user
