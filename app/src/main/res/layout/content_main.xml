@@ -151,6 +151,13 @@
         android:orientation="vertical"
         android:background="@color/gray"></LinearLayout>
 
+        <TextView
+            android:id="@+id/mytext"
+            android:textSize="15dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <ListView
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"

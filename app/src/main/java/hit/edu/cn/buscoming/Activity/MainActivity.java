@@ -77,24 +77,40 @@ public class MainActivity extends BaseActivity
 
 
 //        未登录
-//        if(sgetname().equals("unknown")){
-//
-//        }
+       if(sgetname().equals("unknown")){
+           TextView mytext = (TextView)findViewById(R.id.mytext);
+           mytext.setText("未登录");
+
+
+        }
+        else
+       {
+
+           ListView mylist = (ListView)findViewById(R.id.homebiglist);
+           TextView mytext = (TextView)findViewById(R.id.mytext);
+           DBManager db = new DBManager(MainActivity.this);
+           final List<Recent> r=db.getRecent(sgetname(),1,db.getnum("recent",1));
+           int b= db.getnum("recent",2);
+           int a=0;
+           while(a<b)
+           {
+               r.add(db.getRecent(sgetname(),2,b).get(a));
+               a++;
+           }
+           b= db.getnum("recent",3);
+           a=0;
+           while(a<b)
+           {
+               r.add(db.getRecent(sgetname(),3,b).get(a));
+               a++;
+           }
 
 
 
-
-        ListView mylist = (ListView)findViewById(R.id.homebiglist);
-        DBManager db = new DBManager(MainActivity.this);
-        //int a= db.getnum("recent",1);
-        final List<Recent> r=db.getRecent(sgetname(),1,1);
-        r.add(db.getRecent(sgetname(),2,1).get(0));
-        r.add(db.getRecent(sgetname(),3,1).get(0));
-
-
-
-        RecentArrayAdapter _adapter = new RecentArrayAdapter(MainActivity.this,R.layout.list_item,r);
-        mylist.setAdapter(_adapter);
+           RecentArrayAdapter _adapter = new RecentArrayAdapter(MainActivity.this,R.layout.list_item,r);
+           mylist.setAdapter(_adapter);
+           mytext.setText("最近查询");
+       }
 
 
 
