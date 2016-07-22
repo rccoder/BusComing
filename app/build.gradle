@@ -32,4 +32,5 @@ dependencies {
     compile 'com.gordonwong:material-sheet-fab:1.2.1'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     testCompile 'junit:junit:4.12'
+    compile files('src/main/java/hit/edu/cn/buscoming/libs/universal-image-loader-1.8.6.jar')
 }

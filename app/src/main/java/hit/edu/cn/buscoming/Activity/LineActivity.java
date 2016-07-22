@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -79,9 +78,13 @@ public class LineActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
+<<<<<<< HEAD
         rc = intent.getStringExtra("city");
         rl = intent.getStringExtra("line");
 
+=======
+        String line = intent.getStringExtra("extraline");
+>>>>>>> 153f45f23ee0f1e5c68152f449522ff11942f1a8
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity);
         final EditText editTextline = (EditText)findViewById(R.id.inputline);
@@ -91,6 +94,8 @@ public class LineActivity extends BaseActivity {
             editTextline.setText(rl);
         }
         editTextcity.setText(city);
+        editTextline.setText(line);
+
 
 
         final Config config = (Config) getApplication();
