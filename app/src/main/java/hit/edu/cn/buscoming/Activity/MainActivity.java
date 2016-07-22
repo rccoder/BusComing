@@ -13,11 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
-=======
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
->>>>>>> 153f45f23ee0f1e5c68152f449522ff11942f1a8
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,20 +27,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-import java.util.List;
-
-import hit.edu.cn.buscoming.Adapter.RecentArrayAdapter;
-=======
 import java.util.ArrayList;
 import java.util.List;
 
->>>>>>> 153f45f23ee0f1e5c68152f449522ff11942f1a8
 import hit.edu.cn.buscoming.Base.BaseActivity;
 import hit.edu.cn.buscoming.Collector.ActivityCollector;
 import hit.edu.cn.buscoming.Config;
-import hit.edu.cn.buscoming.DB.DBManager;
-import hit.edu.cn.buscoming.DB.Recent;
 import hit.edu.cn.buscoming.R;
 import hit.edu.cn.buscoming.Wea.Weather;
 
@@ -72,8 +61,7 @@ public class MainActivity extends BaseActivity
 
 
 
-<<<<<<< HEAD
-=======
+
 //        未登录
 //        if(sgetname().equals("unknown")){
 //
@@ -108,7 +96,7 @@ public class MainActivity extends BaseActivity
 
             }
         });
->>>>>>> 153f45f23ee0f1e5c68152f449522ff11942f1a8
+
 
         final Config key = (Config) getApplication();
 

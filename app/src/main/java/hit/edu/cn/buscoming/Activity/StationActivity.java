@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -37,8 +36,8 @@ import hit.edu.cn.buscoming.R;
 
 public class StationActivity extends BaseActivity {
     public List<Map<String, Object>> mData;
-    private String rc;
-    private String rl;
+//    private String rc;
+//    private String rl;
     public String sgetname(){
         SharedPreferences sharedPreferences = getSharedPreferences("ussss", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("user","unknown");
@@ -73,26 +72,26 @@ public class StationActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("extra");
-        rc = intent.getStringExtra("city");
-        rl = intent.getStringExtra("line");
+//        rc = intent.getStringExtra("city");
+//        rl = intent.getStringExtra("line");
 
         final EditText editTextcity = (EditText)findViewById(R.id.inputcity1);
         final EditText editTextstation = (EditText)findViewById(R.id.inputstation);
-
-        if(rl.isEmpty()==false)
-        {
-            editTextcity.setText(rc);
-            editTextstation.setText(rl);
-        }
-        else
-        {
-            editTextcity.setText(city);
-        }
+//
+//        if(rl.isEmpty()==false)
+//        {
+//            editTextcity.setText(rc);
+//            editTextstation.setText(rl);
+//        }
+//        else
+//        {
+//            editTextcity.setText(city);
+//        }
 
         final Config config = (Config) getApplication();
 
         ImageButton button = (ImageButton)findViewById(R.id.stationsearch);
-        button.setOnClickListener(new Button.OnClickListener(){
+        button.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Toast.makeText(StationActivity.this, "searching", Toast.LENGTH_SHORT).show();
